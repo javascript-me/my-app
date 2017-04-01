@@ -1,6 +1,6 @@
 import {assert} from 'chai'
 import React from 'react'
-import {shallow, mount} from 'enzyme'
+import {mount} from 'enzyme'
 import ResourceList from './resource-list'
 
 describe('ResourceList', () => {
