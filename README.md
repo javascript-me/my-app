@@ -1,4 +1,8 @@
 
+0. Install dependencies. Please ensure you have latest node [e.g. https://nodejs.org/dist/v6.10.1/] installed in your machine.
+
+npm install
+
 1. Run unit test.
 
 npm test
