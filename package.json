@@ -3,22 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "mocha": "3.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "classnames": "2.2.5",
     "less": "2.7.1",
+    "chai": "3.5.0",
     "less-plugin-autoprefix": "1.5.1",
-    "less-plugin-clean-css": "1.5.1"
-  },
-  "devDependencies": {
-    "react-scripts": "0.9.5"
+    "less-plugin-clean-css": "1.5.1",
+    "enzyme": "^2.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha src/**/*.spec.js --compilers js:babel-core/register --require src/setup.js",
+
+    "test0": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "css": "lessc --strict-imports --clean-css=\"\" --autoprefix=\"IE >= 11,last 5 Edge versions,last 10 Chrome versions\" --source-map --source-map-less-inline --source-map-rootpath=src src/index.less src/App.css"
-
   }
 }
