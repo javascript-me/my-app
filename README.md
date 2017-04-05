@@ -29,5 +29,5 @@ npm run server
 See unit test coverage report here: 
 
 ```
-file:///C:/Doc/Dev/javascript-me/my-app/coverage/lcov-report/index.html
+my-app/coverage/lcov-report/index.html
 ```
