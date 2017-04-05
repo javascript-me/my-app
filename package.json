@@ -23,6 +23,7 @@
     "css": "lessc --strict-imports --clean-css=\"\" --autoprefix=\"IE >= 11,last 5 Edge versions,last 10 Chrome versions\" src/index.less src/index.css",
     "build": "react-scripts build",
     "server": "serve -s build",
+
     "test0": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
