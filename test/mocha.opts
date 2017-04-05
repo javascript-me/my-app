@@ -1,0 +1,8 @@
+--colors
+--reporter spec
+--timeout 1000
+--compilers js:babel-register
+--require babel-polyfill
+--require ./test/test-setup.js
+--recursive
+--sort
