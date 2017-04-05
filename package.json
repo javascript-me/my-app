@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "test": "mocha src/**/*.spec.js --compilers js:babel-core/register --require src/setup.js",
+    "test": "mocha src/**/*.spec.js --compilers js:babel-core/register --require src/mocha-setup.js",
     "css": "lessc --strict-imports --clean-css=\"\" --autoprefix=\"IE >= 11,last 5 Edge versions,last 10 Chrome versions\" --source-map --source-map-less-inline --source-map-rootpath=src src/index.less src/index.css",
     "build": "react-scripts build",
     "server": "serve -s build",
