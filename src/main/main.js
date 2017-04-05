@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
-import Agents from './agents/agents'
+import Agents from '../agents/agents'
 
 export default class Main extends Component {
   render() {
