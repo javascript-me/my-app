@@ -4,6 +4,8 @@ TODO
 
 1. Use router.
 2. Ensure Unit Test is 100% coverage.
+3. Add ESLint checking.
+
 
 Step
 =====
@@ -32,6 +34,13 @@ Run coverage
 npm run coverage
 ```
 
+See unit test coverage report here:
+
+```
+my-app/coverage/lcov-report/index.html
+```
+
+
 (Optional) Build to single optimized files and run.
 
 ```
@@ -40,8 +49,3 @@ npm install -g serve
 npm run server
 ```
 
-See unit test coverage report here: 
-
-```
-my-app/coverage/lcov-report/index.html
-```

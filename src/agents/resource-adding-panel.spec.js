@@ -4,6 +4,7 @@ import {mount} from 'enzyme'
 import ResourceAddingPanel from './resource-adding-panel'
 
 describe('ResourceAddingPanel', () => {
+
     it('render() is working fine', (done) => {
         let component = mount(<ResourceAddingPanel
             onClose={() => {
@@ -23,4 +24,15 @@ describe('ResourceAddingPanel', () => {
         buttons.at(0).simulate('click')
         buttons.at(1).simulate('click')
     })
+
+    it('changeText() will set a state value', () => {
+        let component = mount(<ResourceAddingPanel />)
+        let instance = component.instance()
+        assert.equal('', instance.state.value)
+        instance.changeText({target: {
+            value: 'a'
+        }})
+        assert.equal('a', instance.state.value)
+    })
+
 })

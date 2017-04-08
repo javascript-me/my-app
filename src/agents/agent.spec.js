@@ -47,6 +47,16 @@ describe('Agent', () => {
         assert.equal(3, component.instance().state.resources.length)
         component.instance().addResources('a,b')
         assert.equal(5, component.instance().state.resources.length)
+        component.instance().addResources(' ')
+        assert.equal(5, component.instance().state.resources.length)
+    })
+
+    it('deleteResource() will remove target resources', () => {
+        assert.equal(3, component.instance().state.resources.length)
+        component.instance().deleteResource('ubuntu')
+        assert.equal(2, component.instance().state.resources.length)
+        component.instance().deleteResource('')
+        assert.equal(2, component.instance().state.resources.length)
     })
 
 })
