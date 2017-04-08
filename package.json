@@ -16,7 +16,9 @@
     "react-addons-test-utils": "^15.4.2",
     "react-scripts": "^0.9.5",
     "babel-polyfill": "^6.23.0",
-    "istanbul": "1.1.0-alpha.1"
+    "istanbul": "1.1.0-alpha.1",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,11 +27,9 @@
     "css": "lessc --strict-imports --clean-css=\"\" --autoprefix=\"IE >= 11,last 5 Edge versions,last 10 Chrome versions\" src/index.less src/index.css",
     "build": "react-scripts build",
     "server": "serve -s build",
-
     "test0": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-
   }
 }
