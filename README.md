@@ -1,4 +1,12 @@
 
+TODO
+=====
+
+1. Use router.
+2. Ensure Unit Test is 100% coverage.
+
+Step
+=====
 
 Install dependencies. Please ensure you have latest node [e.g. https://nodejs.org/dist/v6.10.1/] installed in your machine.
 
@@ -16,6 +24,12 @@ Run application.
 
 ```
 npm start
+```
+
+Run coverage
+
+```
+npm run coverage
 ```
 
 (Optional) Build to single optimized files and run.
