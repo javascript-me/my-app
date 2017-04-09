@@ -15,7 +15,7 @@ export default class Main extends Component {
             </div>
             <Router>
                 <div>
-                    <ul>
+                    <ul className='menus'>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/agents">Agents</Link></li>
                         <li><Link to="/center-div">Center Div</Link></li>
