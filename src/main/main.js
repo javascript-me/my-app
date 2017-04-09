@@ -10,7 +10,7 @@ export default class Main extends Component {
         <div className="App">
             <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <h2>Welcome to TW!... </h2>
+                <h2>Welcome to TW! </h2>
             </div>
             <Router>
                 <div>
