@@ -3,7 +3,7 @@ import logo from './logo.svg'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Agents from '../agents/agents'
 import CenterDiv from '../css-patterns/center-div/center-div'
-import MultipleMedia from '../css-patterns/multiple-media/multiple-media'
+import MultipleMedias from '../css-patterns/multiple-medias/multiple-medias'
 
 export default class Main extends Component {
   render() {
@@ -25,7 +25,7 @@ export default class Main extends Component {
                     <Route exact path="/" component={Agents}/>
                     <Route path="/agents" component={Agents}/>
                     <Route path="/center-div" component={CenterDiv}/>
-                    <Route path="/multiple-media" component={MultipleMedia}/>
+                    <Route path="/multiple-media" component={MultipleMedias}/>
                 </div>
             </Router>
         </div>
