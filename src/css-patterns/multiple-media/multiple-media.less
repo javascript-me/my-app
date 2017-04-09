@@ -1,0 +1,17 @@
+.multiple-media {
+  background-color: pink;
+}
+
+@media (min-width: 401px) and (max-width: 800px) {
+  @scale: 0.75;
+  .multiple-media {
+    background-color: green;
+  }
+}
+
+@media (max-width: 400px) {
+  @scale: 0.75;
+  .multiple-media {
+    background-color: darkslategrey;
+  }
+}
