@@ -2,10 +2,6 @@ import React from 'react'
 
 export default class ResourceList extends React.Component {
 
-    constructor (props) {
-        super(props)
-    }
-
     delete (item) {
         this.props.onDelete(item)
     }

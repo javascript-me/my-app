@@ -63,7 +63,7 @@ export default class Agent extends React.Component {
 
     render () {
         return <div className={this.getAgentItemClassName()}>
-            <div>
+            <div className="section">
                 <span className='host-server'>{this.props.hostServer}</span>
                 <div className='statuses'>
                     <span className='status-label'>{this.props.buildingStatus}</span>
@@ -71,15 +71,15 @@ export default class Agent extends React.Component {
                     <span className='status-label'>{this.props.path}</span>
                 </div>
             </div>
-
-            <div>
+            <div className="section">
                 +<span className='underline' onClick={this.openResourceAddingPanel}>Specify Resources</span>
                 <span className='status-label'>Resources: </span>
-                <ResourceList resources={this.state.resources}
-                              onDelete={this.deleteResource} />
+                <ResourceList resources={this.state.resources} onDelete={this.deleteResource} />
             </div>
             {
-                this.state.visibleResourceAddingPanel ? <ResourceAddingPanel onAddedResources={this.addResources} onClose={this.closeResourceAddingPanel} /> : null
+                this.state.visibleResourceAddingPanel
+                    ? <ResourceAddingPanel onAddedResources={this.addResources} onClose={this.closeResourceAddingPanel} />
+                    : null
             }
         </div>
     }

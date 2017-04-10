@@ -7,30 +7,36 @@ export default class AgentList extends React.Component {
         super(props)
 
         this.state = {
-            agents: [
-                {
-                    hostServer: 'bjstdmngbgr02.thoughtworks.com',
-                    buildingStatus: 'idle',
-                    ip: '192.168.1.2',
-                    path: '/var/lib/cruise-agent',
-                    resources: [
-                        'ubuntu',
-                        'firefox3',
-                        'core-duo'
-                    ]
-                },
-                {
-                    hostServer: 'bjstdmngbgr02.thoughtworks.com',
-                    buildingStatus: 'building',
-                    ip: '192.168.1.3',
-                    path: '/var/lib/cruise-agent',
-                    resources: [
-
-                    ]
-                }
-            ]
+            agents: []
         }
+    }
 
+    componentDidMount () {
+        let result = [
+            {
+                hostServer: 'bjstdmngbgr02.thoughtworks.com',
+                buildingStatus: 'idle',
+                ip: '192.168.1.2',
+                path: '/var/lib/cruise-agent',
+                resources: [
+                    'ubuntu',
+                    'firefox3',
+                    'core-duo'
+                ]
+            },
+            {
+                hostServer: 'bjstdmngbgr02.thoughtworks.com',
+                buildingStatus: 'building',
+                ip: '192.168.1.3',
+                path: '/var/lib/cruise-agent',
+                resources: [
+
+                ]
+            }
+        ]
+        this.setState({
+            agents: result
+        })
     }
 
     render () {
