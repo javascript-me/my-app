@@ -8,9 +8,9 @@ import MultipleMedias from '../css-patterns/multiple-medias/multiple-medias'
 export default class Main extends Component {
   render() {
     return (
-        <div className="App">
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div className="app">
+            <div className="app-header">
+                <img src={logo} className="app-logo" alt="logo" />
                 <h2>Welcome to TW! </h2>
             </div>
             <Router>
