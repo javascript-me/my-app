@@ -72,7 +72,10 @@ export default class Agent extends React.Component {
                 </div>
             </div>
             <div className="section">
-                +<span className='add-resource underline' onClick={this.openResourceAddingPanel}>Specify Resources</span>
+                +
+                <span className='add-resource underline' onClick={this.openResourceAddingPanel}>
+                    Specify Resources
+                </span>
                 <span className='status-label'>Resources: </span>
                 <ResourceList resources={this.state.resources} onDelete={this.deleteResource} />
             </div>
