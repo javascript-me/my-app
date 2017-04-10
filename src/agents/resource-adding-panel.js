@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
-
 export default class ResourceAddingPanel extends React.Component {
 
     constructor (props) {
@@ -23,30 +21,29 @@ export default class ResourceAddingPanel extends React.Component {
         return ResourceAddingPanel.containsChild(host, target.parentNode)
     }
 
+    pageClickHandler (e) {
+        let clickedNode = e.target
+        let resourceAddingPanelNode = ReactDOM.findDOMNode(this.refs.resourceCreator);
+
+        if (clickedNode.innerHTML === 'Specify Resources') return
+        if (ResourceAddingPanel.containsChild(resourceAddingPanelNode, clickedNode)) return
+        this.props.onClose()
+        console.log('click else area... ')
+    }
+
     componentDidMount () {
-        let thisReactDOM = ReactDOM
-
-        window.addEventListener('click', (e) => {
+        let clickHandler = (e) => {
             let clickedNode = e.target
-            let resourceAddingPanelNode = thisReactDOM.findDOMNode(this.refs.resourceCreator);
-            //let node = ReactDOM.findDOMNode(this.refs.resourceCreator)
-            // console.log(node)
-            console.log(clickedNode)
-            console.log(resourceAddingPanelNode)
+            let resourceAddingPanelNode = ReactDOM.findDOMNode(this.refs.resourceCreator);
 
-            if (clickedNode === resourceAddingPanelNode) {
-                console.log('same node')
-            }
+            if (clickedNode.innerHTML === 'Specify Resources') return
+            if (ResourceAddingPanel.containsChild(resourceAddingPanelNode, clickedNode)) return
 
-            if (clickedNode.parentNode === resourceAddingPanelNode) {
-                console.log('is direct child node')
-            }
+            window.removeEventListener('click', clickHandler)
+            this.props.onClose()
+        }
 
-            if (ResourceAddingPanel.containsChild(resourceAddingPanelNode, clickedNode)) {
-                console.log('containsChild...')
-            }
-
-        })
+        window.addEventListener('click', clickHandler)
     }
 
     changeText (e) {
