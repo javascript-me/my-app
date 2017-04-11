@@ -19,21 +19,41 @@
   to { transform: rotate(360deg); }
 }
 
-.menus {
-  list-style-type: none;
-  padding: 0;
+.feature {
+  .menus {
+    list-style-type: none;
+    padding: 0;
 
-  li {
-    display: inline;
-    margin-left: 10px;
-    padding: 10px;
-    background-color: pink;
+    li {
+      display: inline;
+      margin-left: 10px;
+      padding: 10px;
+      background-color: pink;
 
-    a {
-      text-decoration: none;
-      color: black;
-      font-family: Consolas;
-      font-size: 20px;
+      &.selected {
+        background-color: yellow;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        font-family: Consolas;
+        font-size: 20px;
+        user-select: none;
+        margin: -10px;
+        padding: 10px;
+      }
     }
+
+    li:hover {
+      background-color: yellow;
+    }
+
+  }
+
+  .error {
+    padding: 10px;
   }
 }
+
+
