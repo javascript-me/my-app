@@ -5,10 +5,6 @@ import ClassNames from 'classnames'
 
 export default class Feature extends React.Component {
 
-    constructor (props) {
-        super(props)
-    }
-
     getMenuItemClassNames (featureName) {
         return ClassNames(
             {selected: featureName === this.props.match.params.featureName}
@@ -33,7 +29,5 @@ export default class Feature extends React.Component {
             <hr/>
             {result.component}
         </div>
-
     }
-
 }

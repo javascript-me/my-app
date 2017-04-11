@@ -5,8 +5,8 @@ import MultipleMedias from '../css-patterns/multiple-medias/multiple-medias'
 
 export default {
     items: [
-        {label: 'Agents', featureName: 'agents', component: <Agents />},
-        {label: 'Center Div', featureName: 'center-div', component: <CenterDiv />},
-        {label: 'Multiple Media', featureName: 'multiple-media', component: <MultipleMedias />}
+        {featureName: 'agents', label: 'Agents', component: <Agents />},
+        {featureName: 'center-div', label: 'Center Div', component: <CenterDiv />},
+        {featureName: 'multiple-media', label: 'Multiple Media', component: <MultipleMedias />}
     ]
 }
