@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>20/20</span>
+        <span class='fraction'>42/42</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>20/20</span>
+        <span class='fraction'>42/42</span>
       </div>
     </div>
   </div>
@@ -80,7 +80,46 @@
 35
 36
 37
-38</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -114,6 +153,45 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,13 +232,52 @@ describe('ResourceAddingPanel', () =&gt; {
         assert.equal('a', instance.state.value)
     })
 &nbsp;
+    it('containsChild() can be access', () =&gt; {
+        let host = {}
+        assert.ok(ResourceAddingPanel.containsChild(host, host))
+        assert.isNotOk(ResourceAddingPanel.containsChild(host, null))
+        assert.isNotOk(ResourceAddingPanel.containsChild(null, host))
+&nbsp;
+        let itsChild = {
+            parentNode: host
+        }
+&nbsp;
+        assert.ok(ResourceAddingPanel.containsChild(host, itsChild))
+&nbsp;
+        let otherChild = {
+            parentNode: {}
+        }
+&nbsp;
+        assert.isNotOk(ResourceAddingPanel.containsChild(host, otherChild))
+    })
+&nbsp;
+    it('addResources() will trigger event', () =&gt; {
+        let component = mount(&lt;ResourceAddingPanel onAddedResources={(value) =&gt; {
+            assert.equal('abc', value)
+        }} /&gt;)
+        component.setState({
+            value: 'abc'
+        })
+        let instance = component.instance()
+        instance.addResources()
+    })
+&nbsp;
+    it('trigger change event from input-field', () =&gt; {
+        let component = mount(&lt;ResourceAddingPanel /&gt;)
+        let instance = component.instance()
+        assert.equal('', instance.state.value)
+        let input = component.find('.input-field')
+        input.simulate('change', {target: {value: 'ddd'}})
+        assert.equal('ddd', instance.state.value)
+    })
+&nbsp;
 })</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 09 2017 01:11:13 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Apr 11 2017 22:34:11 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="prettify.js"></script>

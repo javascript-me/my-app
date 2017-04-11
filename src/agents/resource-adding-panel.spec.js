@@ -35,4 +35,43 @@ describe('ResourceAddingPanel', () => {
         assert.equal('a', instance.state.value)
     })
 
+    it('containsChild() can be access', () => {
+        let host = {}
+        assert.ok(ResourceAddingPanel.containsChild(host, host))
+        assert.isNotOk(ResourceAddingPanel.containsChild(host, null))
+        assert.isNotOk(ResourceAddingPanel.containsChild(null, host))
+
+        let itsChild = {
+            parentNode: host
+        }
+
+        assert.ok(ResourceAddingPanel.containsChild(host, itsChild))
+
+        let otherChild = {
+            parentNode: {}
+        }
+
+        assert.isNotOk(ResourceAddingPanel.containsChild(host, otherChild))
+    })
+
+    it('addResources() will trigger event', () => {
+        let component = mount(<ResourceAddingPanel onAddedResources={(value) => {
+            assert.equal('abc', value)
+        }} />)
+        component.setState({
+            value: 'abc'
+        })
+        let instance = component.instance()
+        instance.addResources()
+    })
+
+    it('trigger change event from input-field', () => {
+        let component = mount(<ResourceAddingPanel />)
+        let instance = component.instance()
+        assert.equal('', instance.state.value)
+        let input = component.find('.input-field')
+        input.simulate('change', {target: {value: 'ddd'}})
+        assert.equal('ddd', instance.state.value)
+    })
+
 })
