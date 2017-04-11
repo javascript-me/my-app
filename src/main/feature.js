@@ -9,24 +9,23 @@ export default class Feature extends React.Component {
         super(props)
     }
 
-    getMenuItemClassNames (url) {
+    getMenuItemClassNames (featureName) {
         return ClassNames(
-            {selected: url === this.props.match.params.featureName}
+            {selected: featureName === this.props.match.params.featureName}
         )
     }
 
     render () {
-
-        let result = Menu.find((item) => {
-            return item.url === this.props.match.params.featureName
+        let result = Menu.items.find((item) => {
+            return item.featureName === this.props.match.params.featureName
         })
 
         return <div>
             <ul className='menus'>
                 {
-                    Menu.map((item, index) => {
-                        return <li key={index} className={this.getMenuItemClassNames(item.url)}>
-                            <Link to={item.url}>{item.label}</Link>
+                    Menu.items.map((item, index) => {
+                        return <li key={index} className={this.getMenuItemClassNames(item.featureName)}>
+                            <Link to={item.featureName}>{item.label}</Link>
                         </li>
                     })
                 }
