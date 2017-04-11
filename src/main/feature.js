@@ -7,16 +7,24 @@ export default class Feature extends React.Component {
 
     getMenuItemClassNames (featureName) {
         return ClassNames(
-            {selected: featureName === this.props.match.params.featureName}
+            {selected: this.matchesUrl(featureName)}
         )
     }
 
-    render () {
-        let result = Menu.items.find((item) => {
-            return item.featureName === this.props.match.params.featureName
-        })
+    matchesUrl (value) {
+        return value === this.props.match.params.featureName
+    }
 
-        return <div>
+    findMatchedFeature () {
+        return Menu.items.find((item) => {
+            return this.matchesUrl(item.featureName)
+        })
+    }
+
+    render () {
+        let feature = this.findMatchedFeature()
+
+        return <div className='feature'>
             <ul className='menus'>
                 {
                     Menu.items.map((item, index) => {
@@ -27,7 +35,9 @@ export default class Feature extends React.Component {
                 }
             </ul>
             <hr/>
-            {result.component}
+            {
+                feature ? feature.component : <div className='error'>Feature is not found!</div>
+            }
         </div>
     }
 }
