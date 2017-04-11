@@ -29,11 +29,20 @@
     padding: 10px;
     background-color: pink;
 
+    &.selected {
+      background-color: yellow;
+    }
+
     a {
       text-decoration: none;
       color: black;
       font-family: Consolas;
       font-size: 20px;
+      user-select: none;
     }
+  }
+
+  li:hover {
+    background-color: yellow;
   }
 }
