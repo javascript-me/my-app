@@ -12,8 +12,7 @@ export default class Agent extends React.Component {
         this.updateResources = this.updateResources.bind(this)
 
         this.state = {
-            resources: this.props.resources,
-            visibleResourceAddingPanel: false
+            resources: this.props.resources
         }
     }
 
