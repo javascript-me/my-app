@@ -8,40 +8,13 @@ export default class Agent extends React.Component {
     constructor (props) {
         super(props)
 
-        this.openResourceAddingPanel = this.openResourceAddingPanel.bind(this)
-        this.closeResourceAddingPanel = this.closeResourceAddingPanel.bind(this)
-        this.addResources = this.addResources.bind(this)
         this.deleteResource = this.deleteResource.bind(this)
+        this.updateResources = this.updateResources.bind(this)
 
         this.state = {
             resources: this.props.resources,
             visibleResourceAddingPanel: false
         }
-    }
-
-    openResourceAddingPanel () {
-        this.setState({
-            visibleResourceAddingPanel: true
-        })
-    }
-
-    closeResourceAddingPanel () {
-        this.setState({
-            visibleResourceAddingPanel: false
-        })
-    }
-
-    addResources (string) {
-        let trimmedString = string.trim()
-
-        if (!trimmedString) return
-
-        let newResources = trimmedString.split(',')
-
-        this.setState({
-            resources: this.state.resources.concat(newResources),
-            visibleResourceAddingPanel: false
-        })
     }
 
     deleteResource (item) {
@@ -51,6 +24,14 @@ export default class Agent extends React.Component {
         })
         this.setState({
             resources: newResources
+        })
+    }
+
+    updateResources (value) {
+        let resources = this.state.resources
+        resources = resources.concat(value)
+        this.setState({
+            resources: resources
         })
     }
 
@@ -72,18 +53,11 @@ export default class Agent extends React.Component {
                 </div>
             </div>
             <div className="section">
-                +
-                <span className='add-resource underline' onClick={this.openResourceAddingPanel}>
-                    Specify Resources
-                </span>
+                <ResourceAddingPanel updateResources={this.updateResources} />
                 <span className='status-label'>Resources: </span>
                 <ResourceList resources={this.state.resources} onDelete={this.deleteResource} />
             </div>
-            {
-                this.state.visibleResourceAddingPanel
-                    ? <ResourceAddingPanel onAddedResources={this.addResources} onClose={this.closeResourceAddingPanel} />
-                    : null
-            }
+
         </div>
     }
 }
