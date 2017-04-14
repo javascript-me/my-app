@@ -10,6 +10,7 @@ export default class ResourceAddingPanel extends React.Component {
         this.addResources = this.addResources.bind(this)
         this.openResourceAddingPanel = this.openResourceAddingPanel.bind(this)
         this.closeResourceAddingPanel = this.closeResourceAddingPanel.bind(this)
+        this.clickHandler = this.clickHandler.bind(this)
 
         this.state = {
             value: '',
@@ -24,21 +25,11 @@ export default class ResourceAddingPanel extends React.Component {
         return ResourceAddingPanel.containsChild(host, target.parentNode)
     }
 
-    componentDidMount () {
-        let clickHandler = (e) => {
-            let clickedNode = e.target
-            let resourceAddingPanelNode = ReactDOM.findDOMNode(this.refs.resourceCreator)
-
-            console.log('findDOMNode...')
-
-            if (ResourceAddingPanel.containsChild(resourceAddingPanelNode, clickedNode)) return
-
-            // window.removeEventListener('click', clickHandler)
-
-            this.closeResourceAddingPanel()
-        }
-
-        window.addEventListener('click', clickHandler)
+    clickHandler (e) {
+        let clickedNode = e.target
+        let resourceAddingPanelNode = ReactDOM.findDOMNode(this.refs.resourceCreator)
+        if (ResourceAddingPanel.containsChild(resourceAddingPanelNode, clickedNode)) return
+        this.closeResourceAddingPanel()
     }
 
     changeText (e) {
@@ -49,15 +40,11 @@ export default class ResourceAddingPanel extends React.Component {
 
     addResources () {
         let trimmedString = this.state.value.trim()
-
         if (!trimmedString) return
-
         let newResources = trimmedString.split(',')
-
         this.setState({
             visibleResourceAddingPanel: false
         })
-
         this.props.updateResources(newResources)
     }
 
@@ -65,16 +52,18 @@ export default class ResourceAddingPanel extends React.Component {
         this.setState({
             visibleResourceAddingPanel: true
         })
+        window.addEventListener('click', this.clickHandler)
     }
 
     closeResourceAddingPanel () {
         this.setState({
             visibleResourceAddingPanel: false
         })
+        window.removeEventListener('click', this.clickHandler)
     }
 
     render () {
-        return <div ref='resourceCreator'>
+        return <div ref='resourceCreator' className='resource-creator-wrapper'>
             +
             <span className='add-resource underline' onClick={this.openResourceAddingPanel}>
                 Specify Resources
