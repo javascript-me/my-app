@@ -5,17 +5,16 @@ import ResourceAddingPanel from './resource-adding-panel'
 
 describe('ResourceAddingPanel', () => {
 
-    it('render() is working fine', (done) => {
+    it('render() is working fine', () => {
         let component = mount(<ResourceAddingPanel
-            onClose={() => {
-                done()
+            updateResources={(value) => {
+
             }}
-            onAddedResources={(value) => {
-            assert.equal('abc', value)
-        }} />)
+            />)
 
         component.setState({
-            value: 'abc'
+            value: 'abc',
+            visibleResourceAddingPanel: true
         })
 
         let buttons = component.find('.round-button')
@@ -55,9 +54,11 @@ describe('ResourceAddingPanel', () => {
     })
 
     it('addResources() will trigger event', () => {
-        let component = mount(<ResourceAddingPanel onAddedResources={(value) => {
-            assert.equal('abc', value)
-        }} />)
+        let component = mount(<ResourceAddingPanel
+            updateResources={(value) => {
+
+            }}
+        />)
         component.setState({
             value: 'abc'
         })
@@ -67,8 +68,13 @@ describe('ResourceAddingPanel', () => {
 
     it('trigger change event from input-field', () => {
         let component = mount(<ResourceAddingPanel />)
+        component.setState({
+            value: 'abc',
+            visibleResourceAddingPanel: true
+        })
+
         let instance = component.instance()
-        assert.equal('', instance.state.value)
+        assert.equal('abc', instance.state.value)
         let input = component.find('.input-field')
         input.simulate('change', {target: {value: 'ddd'}})
         assert.equal('ddd', instance.state.value)
