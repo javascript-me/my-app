@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>36/36</span>
+        <span class='fraction'>21/21</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>36/36</span>
+        <span class='fraction'>21/21</span>
       </div>
     </div>
   </div>
@@ -77,34 +77,7 @@
 32
 33
 34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+35</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -114,39 +87,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -183,38 +129,11 @@ describe('Agent', () =&gt; {
         component = mount(&lt;Agent resources={resources} /&gt;)
     })
 &nbsp;
-    it('render() is working fine', () =&gt; {
-        assert.isNotOk(component.instance().state.visibleResourceAddingPanel)
-        assert.equal(0, component.find('.resource-creator').length)
-&nbsp;
-        component.setState({
-            visibleResourceAddingPanel: true
-        })
-&nbsp;
-        assert.ok(component.instance().state.visibleResourceAddingPanel)
-        assert.equal(1, component.find('.resource-creator').length)
-    })
-&nbsp;
-    it('openResourceAddingPanel() will set visibleResourceAddingPanel to true', () =&gt; {
-        assert.isNotOk(component.instance().state.visibleResourceAddingPanel)
-        component.instance().openResourceAddingPanel()
-        assert.ok(component.instance().state.visibleResourceAddingPanel)
-    })
-&nbsp;
-    it('closeResourceAddingPanel() will set visibleResourceAddingPanel to false', () =&gt; {
-        component.setState({
-            visibleResourceAddingPanel: true
-        })
-        assert.ok(component.instance().state.visibleResourceAddingPanel)
-        component.instance().closeResourceAddingPanel()
-        assert.isNotOk(component.instance().state.visibleResourceAddingPanel)
-    })
-&nbsp;
     it('addResources() will add more items to resources list', () =&gt; {
         assert.equal(3, component.instance().state.resources.length)
-        component.instance().addResources('a,b')
+        component.instance().updateResources(['a', 'b'])
         assert.equal(5, component.instance().state.resources.length)
-        component.instance().addResources(' ')
+        component.instance().updateResources([])
         assert.equal(5, component.instance().state.resources.length)
     })
 &nbsp;
@@ -232,7 +151,7 @@ describe('Agent', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 12 2017 19:24:58 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Apr 15 2017 01:25:07 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="prettify.js"></script>
