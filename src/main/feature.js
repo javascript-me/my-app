@@ -23,20 +23,19 @@ export default class Feature extends React.Component {
 
     render () {
         let feature = this.findMatchedFeature()
-
         return <div className='feature'>
             <ul className='menus'>
                 {
                     Menu.items.map((item, index) => {
                         return <li key={index} className={this.getMenuItemClassNames(item.featureName)}>
-                            <Link to={item.featureName}>{item.label}</Link>
+                            <Link to={'/feature/' + item.featureName}>{item.label}</Link>
                         </li>
                     })
                 }
             </ul>
             <hr/>
             {
-                feature ? feature.component : <div className='error'>Feature is not found!</div>
+                feature ? feature.component : <div className='error'>Please try clicking above menu... </div>
             }
         </div>
     }

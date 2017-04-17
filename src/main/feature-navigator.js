@@ -8,7 +8,7 @@ export default class FeatureNavigator extends React.Component {
     render () {
         return <Router>
             <div>
-                <Route exact path="/" component={Agents}/>
+                <Route exact path="/" component={Feature}/>
                 <Route path='/feature/:featureName' component={Feature}/>
             </div>
         </Router>
