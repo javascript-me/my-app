@@ -9,6 +9,8 @@ export default class DragAndDrop extends React.Component {
         this.handleMouseMove = this.handleMouseMove.bind(this)
         this.handleMouseUp = this.handleMouseUp.bind(this)
 
+        this.handleEvent = this.handleEvent.bind(this)
+
         this.state = {
             locationStyle: {left: '300px', top: '300px'},
             isDragging: false
@@ -16,6 +18,45 @@ export default class DragAndDrop extends React.Component {
 
         this.diffX = 0
         this.diffY = 0
+    }
+
+    componentDidMount () {
+        this.enableDragAndDrop()
+    }
+
+    componentWillUnmount () {
+        this.disableDragAndDrop()
+    }
+
+
+    disableDragAndDrop () {
+        document.removeEventListener('mousedown', this.handleEvent)
+        document.removeEventListener('mousemove', this.handleEvent)
+        document.removeEventListener('mouseup', this.handleEvent)
+    }
+
+    enableDragAndDrop () {
+        document.addEventListener('mousedown', this.handleEvent)
+        document.addEventListener('mousemove', this.handleEvent)
+        document.addEventListener('mouseup', this.handleEvent)
+    }
+
+    handleEvent (e) {
+        console.log('e.type: ' + e.type)
+
+        if (e.type === 'mousedown') {
+
+        }
+
+
+        if (e.type === 'mousemove') {
+
+        }
+
+
+        if (e.type === 'mouseup') {
+
+        }
     }
 
     handleMouseDown (e) {
