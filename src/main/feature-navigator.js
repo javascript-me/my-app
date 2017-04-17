@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Agents from '../agents/agents'
 import Feature from './feature'
 
 export default class FeatureNavigator extends React.Component {
