@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class DragAndDrop extends React.Component {
 
@@ -6,15 +7,31 @@ export default class DragAndDrop extends React.Component {
         super(props)
         this.changePosition = this.changePosition.bind(this)
         this.handleMouseDown = this.handleMouseDown.bind(this)
+        this.handleMouseMove = this.handleMouseMove.bind(this)
+        this.handleMouseUp = this.handleMouseUp.bind(this)
 
         this.state = {
-            locationStyle: {top: '20px', left: '20px'}
+            locationStyle: {top: '20px', left: '20px'},
+            isDragging: false
         }
     }
 
     handleMouseDown (e) {
-        console.log(e.target.clientX + ' : ' + e.target.clientY)
+        this.setState({
+            isDragging: e.target.className === 'draggable-item'
+        })
+    }
 
+    handleMouseMove (e) {
+        if (this.state.isDragging) {
+            console.log('mouse-x: ' + e.clientX + ', mouse-y: ' + e.clientY)
+        }
+    }
+
+    handleMouseUp (e) {
+        this.setState({
+            isDragging: false
+        })
     }
 
     changePosition () {
@@ -26,13 +43,14 @@ export default class DragAndDrop extends React.Component {
         this.setState({
             locationStyle: locationStyle
         })
-
     }
 
     render () {
         return <div className='draggable-item-container'>
             <div className='draggable-item' style={this.state.locationStyle}
-                onMouseDown={this.handleMouseDown}>
+                onMouseDown={this.handleMouseDown}
+                onMouseMove={this.handleMouseMove}
+                onMouseUp={this.handleMouseUp}>
                 hello
             </div>
             <button onClick={this.changePosition}>Change Position</button>
