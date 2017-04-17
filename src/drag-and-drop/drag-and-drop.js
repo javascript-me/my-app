@@ -19,6 +19,8 @@ export default class DragAndDrop extends React.Component {
     }
 
     handleMouseDown (e) {
+        console.log('down')
+
         if (e.target.className === 'draggable-item') {
             this.diffX = e.clientX - e.target.offsetLeft
             this.diffY = e.clientY - e.target.offsetTop
@@ -29,27 +31,44 @@ export default class DragAndDrop extends React.Component {
     }
 
     handleMouseMove (e) {
+        console.log('move')
+
         if (this.state.isDragging) {
+            let newLeft = e.clientX - this.diffX
+            let newTop = e.clientY - this.diffY
+
+            // Here we ensure the green block is not moved out of visible window area.
+            if (newLeft < 0) newLeft = 0
+            if (newTop < 0) newTop = 0
+            if (newLeft + e.target.offsetWidth > window.innerWidth) newLeft = window.innerWidth - e.target.offsetWidth
+            if (newTop + e.target.offsetHeight > window.innerHeight) newTop = window.innerHeight - e.target.offsetHeight
+
+            console.log('window.innerWidth: ' + window.innerWidth)
+            console.log('window.innerHeight: ' + window.innerHeight)
+            console.log('window.outerWidth: ' + window.outerWidth)
+            console.log('window.outerHeight: ' + window.outerHeight)
+            console.log('e.clientX: ' + e.clientX + ', e.clientY: ' + e.clientY)
+
             this.setState({
-                locationStyle: this.createPosition(e.clientX - this.diffX, e.clientY - this.diffY)
+                locationStyle: this.createLocationStyle(newLeft, newTop)
             })
         }
     }
 
     handleMouseUp (e) {
+        console.log('up')
         this.setState({
-            isDragging: false,
-            locationStyle: this.createPosition(e.clientX - this.diffX, e.clientY - this.diffY)
+            isDragging: false
         })
     }
 
-    createPosition (newLeft, newTop) {
+    createLocationStyle (newLeft, newTop) {
         return {left: newLeft + 'px', top: newTop + 'px'}
     }
 
     changePosition (newLeft, newTop) {
         this.setState({
-            locationStyle: this.createPosition(newLeft, newTop)
+            locationStyle: this.createLocationStyle(newLeft, newTop)
         })
     }
 
@@ -59,7 +78,7 @@ export default class DragAndDrop extends React.Component {
                 onMouseDown={this.handleMouseDown}
                 onMouseMove={this.handleMouseMove}
                 onMouseUp={this.handleMouseUp}>
-                hello
+                Drag Me...
             </div>
             <button onClick={() => this.changePosition(40, 40)}>Change to new position (left: 20px, top: 20px)</button>
         </div>
