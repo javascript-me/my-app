@@ -1,9 +1,9 @@
 import React from 'react'
-import Menu from './menu'
+import GalleryItems from './gallery-items'
 import {Link} from 'react-router-dom'
 import ClassNames from 'classnames'
 
-export default class Feature extends React.Component {
+export default class Gallery extends React.Component {
 
     getMenuItemClassNames (featureName) {
         return ClassNames(
@@ -16,7 +16,7 @@ export default class Feature extends React.Component {
     }
 
     findMatchedFeature () {
-        return Menu.items.find((item) => {
+        return GalleryItems.items.find((item) => {
             return this.matchesUrl(item.featureName)
         })
     }
@@ -26,7 +26,7 @@ export default class Feature extends React.Component {
         return <div className='feature'>
             <ul className='menus'>
                 {
-                    Menu.items.map((item, index) => {
+                    GalleryItems.items.map((item, index) => {
                         return <li key={index} className={this.getMenuItemClassNames(item.featureName)}>
                             <Link to={'/feature/' + item.featureName}>{item.label}</Link>
                         </li>
