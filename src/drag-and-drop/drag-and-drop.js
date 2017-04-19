@@ -35,29 +35,35 @@ export default class DragAndDrop extends React.Component {
     }
 
     handleEvent (e) {
-        if (e.type === 'mousedown') {
-            if (e.target.className === 'draggable-item') {
-                this.diffX = e.clientX - e.target.offsetLeft
-                this.diffY = e.clientY - e.target.offsetTop
-                this.setState({
-                    isDragging: true
-                })
-            }
-        }
-        if (e.type === 'mousemove') {
-            if (this.state.isDragging) {
-                let newLeft = e.clientX - this.diffX
-                let newTop = e.clientY - this.diffY
-                this.setState({
-                    locationStyle: DragAndDropUtil.createLocationStyle(newLeft, newTop)
-                })
-            }
-        }
-        if (e.type === 'mouseup') {
+        e.type === 'mousedown' && this.handleMouseDown(e)
+        e.type === 'mousemove' && this.handleMouseMove(e)
+        e.type === 'mouseup' && this.handleMouseUp()
+    }
+
+    handleMouseDown(e) {
+        if (e.target.className === 'draggable-item') {
+            this.diffX = e.clientX - e.target.offsetLeft
+            this.diffY = e.clientY - e.target.offsetTop
             this.setState({
-                isDragging: false
+                isDragging: true
             })
         }
+    }
+
+    handleMouseMove(e) {
+        if (this.state.isDragging) {
+            let newLeft = e.clientX - this.diffX
+            let newTop = e.clientY - this.diffY
+            this.setState({
+                locationStyle: DragAndDropUtil.createLocationStyle(newLeft, newTop)
+            })
+        }
+    }
+
+    handleMouseUp() {
+        this.setState({
+            isDragging: false
+        })
     }
 
     changePosition (newLeft, newTop) {
