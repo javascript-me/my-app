@@ -60,12 +60,22 @@ export default class MoveableList extends React.Component {
     }
 
     handleMouseDown(e) {
+        let firstClassName = DragAndDropUtil.getFirstClassName(e.target.className)
+
+        if (firstClassName !== 'dragging-icon') return
+
         let index = DragAndDropUtil.getItemIndexFromClassNames(e.target.className)
         let list = this.state.list
 
         list.forEach((item, i) => {
             if ((i === index)) {
                 item.isDragging = true
+
+                console.log('e.clientX: ' + e.clientX)
+                console.log('e.target.offsetLeft: ' + e.target.offsetLeft)
+
+                //offsetLeft is compare with its parent dom.
+
                 item.diffX = e.clientX - e.target.offsetLeft
                 item.diffY = e.clientY - e.target.offsetTop
             } else {

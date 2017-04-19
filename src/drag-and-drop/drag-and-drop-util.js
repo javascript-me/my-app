@@ -4,5 +4,8 @@ export default {
     },
     getItemIndexFromClassNames (classNames) {
         return Number(classNames.split(' ')[1])
+    },
+    getFirstClassName (classNames) {
+        return classNames.split(' ')[0]
     }
 }
