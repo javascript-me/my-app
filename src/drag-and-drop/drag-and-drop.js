@@ -1,4 +1,5 @@
 import React from 'react'
+import DragAndDropUtil from './drag-and-drop-util'
 
 export default class DragAndDrop extends React.Component {
 
@@ -48,7 +49,7 @@ export default class DragAndDrop extends React.Component {
                 let newLeft = e.clientX - this.diffX
                 let newTop = e.clientY - this.diffY
                 this.setState({
-                    locationStyle: this.createLocationStyle(newLeft, newTop)
+                    locationStyle: DragAndDropUtil.createLocationStyle(newLeft, newTop)
                 })
             }
         }
@@ -59,13 +60,9 @@ export default class DragAndDrop extends React.Component {
         }
     }
 
-    createLocationStyle (newLeft, newTop) {
-        return {left: newLeft + 'px', top: newTop + 'px'}
-    }
-
     changePosition (newLeft, newTop) {
         this.setState({
-            locationStyle: this.createLocationStyle(newLeft, newTop)
+            locationStyle: DragAndDropUtil.createLocationStyle(newLeft, newTop)
         })
     }
 
