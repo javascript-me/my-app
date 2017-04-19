@@ -1,4 +1,5 @@
 import React from 'react'
+import DragAndDropUtil from '../drag-and-drop/drag-and-drop-util'
 
 export default class MoveableList extends React.Component {
 
@@ -6,7 +7,29 @@ export default class MoveableList extends React.Component {
         super(props)
         this.handleEvent = this.handleEvent.bind(this)
         this.state = {
-            list: ['hello', 'anthony', 'chen']
+            list: [
+                {
+                    label: 'hello...',
+                    isDragging: false,
+                    locationStyle: {left: '0px', top: '0px'},
+                    diffX: 0,
+                    diffY: 0
+                },
+                {
+                    label: 'anthony',
+                    isDragging: false,
+                    locationStyle: {left: '0px', top: '0px'},
+                    diffX: 0,
+                    diffY: 0
+                },
+                {
+                    label: 'chen',
+                    isDragging: false,
+                    locationStyle: {left: '0px', top: '0px'},
+                    diffX: 0,
+                    diffY: 0
+                },
+            ]
         }
     }
 
@@ -37,15 +60,53 @@ export default class MoveableList extends React.Component {
     }
 
     handleMouseDown(e) {
-        console.log('down..')
+        let index = DragAndDropUtil.getItemIndexFromClassNames(e.target.className)
+        let list = this.state.list
+
+        list.forEach((item, i) => {
+            if ((i === index)) {
+                item.isDragging = true
+                item.diffX = e.clientX - e.target.offsetLeft
+                item.diffY = e.clientY - e.target.offsetTop
+            } else {
+                item.isDragging = false
+                item.diffX = 0
+                item.diffY = 0
+            }
+
+        })
+
+        this.setState({
+            list: list
+        })
+
     }
 
     handleMouseMove(e) {
-        console.log('move..')
+        let list = this.state.list
+        list.forEach((item) => {
+            if (item.isDragging) {
+                let newLeft = e.clientX - item.diffX
+                let newTop = e.clientY - item.diffY
+                item.locationStyle = DragAndDropUtil.createLocationStyle(0, newTop)
+            }
+        })
+
+        this.setState({
+            list: list
+        })
+
     }
 
     handleMouseUp(e) {
-        console.log('up..')
+        let list = this.state.list
+        list.forEach((item) => {
+            item.isDragging = false
+        })
+
+        this.setState({
+            list: list
+        })
     }
 
     render () {
@@ -53,13 +114,17 @@ export default class MoveableList extends React.Component {
             <ul>
                 {
                     this.state.list.map((item, index) => {
-                        return <li className='item' key={index}>
-                            {item}
-                            <div className='shadow'>shadow</div>
+                        return <li className={'item' + ' ' + index} key={index}>
+                            <div className='shadow' style={item.locationStyle}>shadow</div>
+
+                            <div className={'dragging-icon' + ' ' + index}>Dragging ICON</div>
+                            <div className='label'>{item.label}</div>
+
                         </li>
                     })
                 }
             </ul>
+            <div>{JSON.stringify(this.state.list, null, 4)}</div>
         </div>
     }
 }
