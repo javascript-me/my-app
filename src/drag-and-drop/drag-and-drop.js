@@ -37,7 +37,7 @@ export default class DragAndDrop extends React.Component {
     handleEvent (e) {
         e.type === 'mousedown' && this.handleMouseDown(e)
         e.type === 'mousemove' && this.handleMouseMove(e)
-        e.type === 'mouseup' && this.handleMouseUp()
+        e.type === 'mouseup' && this.handleMouseUp(e)
     }
 
     handleMouseDown(e) {
@@ -60,7 +60,7 @@ export default class DragAndDrop extends React.Component {
         }
     }
 
-    handleMouseUp() {
+    handleMouseUp(e) {
         this.setState({
             isDragging: false
         })
