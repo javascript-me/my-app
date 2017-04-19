@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Feature from './feature'
 
-export default class FeatureNavigator extends React.Component {
+export default class SiteRouter extends React.Component {
 
     render () {
         return <Router>

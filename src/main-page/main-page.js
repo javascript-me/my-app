@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
-import FeatureNavigator from './feature-navigator'
+import SiteRouter from './site-router'
 
 export default class Main extends Component {
     render() {
@@ -10,7 +10,7 @@ export default class Main extends Component {
                     <img src={logo} className="app-logo" alt="logo" />
                     <h2>Welcome to React! [{new Date().toLocaleString()}]</h2>
                 </div>
-                <FeatureNavigator />
+                <SiteRouter />
             </div>
         )
     }
