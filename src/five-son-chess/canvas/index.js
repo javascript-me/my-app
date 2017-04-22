@@ -1,8 +1,7 @@
 import React from 'react'
+import CONST from '../const'
 import ReactDOM from 'react-dom'
-import CONST from './const'
-import ChessUtil from './chess-util'
-import ClassNames from 'classnames'
+import ChessUtil from '../chess-util'
 
 function fillRectangle(props) {
     const {context, x, y, width, height} = props
@@ -14,24 +13,12 @@ function strokeRectangle(props) {
     context.strokeRect(x, y, width, height)
 }
 
-export default class FiveSunChessCanvas extends React.Component {
+export default class Canvas extends React.Component {
 
     constructor (props) {
         super(props)
-
         this.handleMouseDown = this.handleMouseDown.bind(this)
         this.handleMouseMove = this.handleMouseMove.bind(this)
-
-        this.undo = this.undo.bind(this)
-        this.redo = this.redo.bind(this)
-        this.reset = this.reset.bind(this)
-
-        this.state = {
-            startSide: CONST.PIECE_COLOR_BLACK,
-            sequence: []
-        }
-
-        this.stackSequence = []
     }
 
     componentDidMount() {
@@ -40,7 +27,7 @@ export default class FiveSunChessCanvas extends React.Component {
         canvasDom.addEventListener('mousedown', this.handleMouseDown)
         canvasDom.addEventListener('mousemove', this.handleMouseMove)
     }
-    
+
     componentDidUpdate() {
         this.updateCanvas()
     }
@@ -53,19 +40,9 @@ export default class FiveSunChessCanvas extends React.Component {
         let netY = ChessUtil.calculateNetPosition(canvasY)
 
         if (!ChessUtil.insideBoard(netX, netY)) return
-        if (!ChessUtil.isNewNetXY(this.state.sequence, netX, netY)) return
+        if (!ChessUtil.isNewNetXY(this.props.sequence, netX, netY)) return
 
-        let sequence = this.state.sequence
-
-        sequence.push({
-            netX: netX,
-            netY: netY,
-            side: ChessUtil.getNextSide(sequence, this.state.startSide)
-        })
-
-        this.setState({
-            sequence: sequence
-        })
+        this.props.onClick(netX, netY)
     }
 
     handleMouseMove (e) {
@@ -80,7 +57,7 @@ export default class FiveSunChessCanvas extends React.Component {
     }
 
     addPieces(context) {
-        this.state.sequence.forEach((item) => {
+        this.props.sequence.forEach((item) => {
             this.addPiece(context, item.netX, item.netY, item.side);
         })
     }
@@ -115,50 +92,12 @@ export default class FiveSunChessCanvas extends React.Component {
         fillRectangle({context, x: 0, y: 0, width: CONST.CANVAS_SIZE.WIDTH, height: CONST.CANVAS_SIZE.HEIGHT})
     }
 
-    undo () {
-        let sequence = this.state.sequence
-        ChessUtil.movePiece(sequence, this.stackSequence)
-        this.setState({
-            sequence: sequence
-        })
+    render () {
+        return <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
     }
+}
 
-    redo () {
-        let sequence = this.state.sequence
-        ChessUtil.movePiece(this.stackSequence, sequence)
-        this.setState({
-            sequence: sequence
-        })
-    }
-
-    reset () {
-        this.setState({
-            sequence: []
-        })
-        this.stackSequence = []
-    }
-
-    getButtonClassNames (sequence) {
-        return ClassNames(
-            'button',
-            {
-                disable: sequence.length === 0
-            }
-        )
-    }
-
-    render() {
-        return (
-            <div className='fix-sun-chess-canvas'>
-                <div className='board'>
-                    <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
-                </div>
-                <div className='board'>
-                    <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
-                    <div className={this.getButtonClassNames(this.stackSequence)} onClick={this.redo}>进棋</div>
-                    <div className='button' onClick={this.reset}>重置</div>
-                </div>
-            </div>
-        )
-    }
+Canvas.propTypes = {
+    sequence: React.PropTypes.array,
+    onClick: React.PropTypes.func
 }
