@@ -2,9 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import CONST from './const'
 
-function rectangle(props) {
+function fillRectangle(props) {
     const {context, x, y, width, height} = props
     context.fillRect(x, y, width, height)
+}
+
+function strokeRectangle(props) {
+    const {context, x, y, width, height} = props
+    context.strokeRect(x, y, width, height)
 }
 
 export default class FiveSunChessCanvas extends React.Component {
@@ -38,22 +43,25 @@ export default class FiveSunChessCanvas extends React.Component {
 
     updateCanvas() {
         const context = this.refs.canvas.getContext('2d')
-        context.clearRect(0,0, 300, 300)
+        context.clearRect(0,0, CONST.CANVAS_SIZE.WIDTH, CONST.CANVAS_SIZE.HEIGHT)
 
-        context.fillStyle = '#EEEEEE'
+        context.fillStyle = CONST.CANVAS_COLOR
 
-        rectangle({context, x: 0, y: 0, width: CONST.SIZE.WIDTH, height: CONST.SIZE.HEIGHT})
+        fillRectangle({context, x: 0, y: 0, width: CONST.CANVAS_SIZE.WIDTH, height: CONST.CANVAS_SIZE.HEIGHT})
 
         context.fillStyle = 'green'
 
 
-        rectangle({context, x: 10, y: 10, width: 50, height: 50})
-        rectangle({context, x: 110, y: 110, width: 50, height: 50})
+
+        strokeRectangle({context, x: 0, y: 0, width: CONST.CELL_SIDE_LENGTH, height: CONST.CELL_SIDE_LENGTH})
+        strokeRectangle({context, x: 50, y: 50, width: CONST.CELL_SIDE_LENGTH, height: CONST.CELL_SIDE_LENGTH})
+
+
     }
 
     render() {
         return (
-            <canvas ref="canvas" width={CONST.SIZE.WIDTH} height={CONST.SIZE.WIDTH} />
+            <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
         )
     }
 }
