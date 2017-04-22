@@ -16,14 +16,19 @@ function isValidNetXY(netX, netY) {
 
 function isNewNetXY(sequence, netX, netY) {
     return sequence.every((item) => {
-        console.log(item.netX, netX, item.netY, netY)
         return item.netX !== netX || item.netY !== netY
     })
+}
+
+function movePiece(sequenceFrom, sequenceTo) {
+    if (sequenceFrom.length === 0) return
+    sequenceTo.push(sequenceFrom.pop())
 }
 
 export default {
     calculateNetPosition: calculateNetPosition,
     getNextSide: getNextSide,
     insideBoard: isValidNetXY,
-    isNewNetXY: isNewNetXY
+    isNewNetXY: isNewNetXY,
+    movePiece: movePiece
 }

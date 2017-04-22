@@ -21,21 +21,15 @@ export default class FiveSunChessCanvas extends React.Component {
         this.handleMouseDown = this.handleMouseDown.bind(this)
         this.handleMouseMove = this.handleMouseMove.bind(this)
 
+        this.undo = this.undo.bind(this)
+        this.redo = this.redo.bind(this)
+
         this.state = {
             startSide: CONST.PIECE_COLOR_BLACK,
-            sequence: [
-                {
-                    netX: 2,
-                    netY: 2,
-                    side: CONST.PIECE_COLOR_BLACK
-                },
-                {
-                    netX: 3,
-                    netY: 3,
-                    side: CONST.PIECE_COLOR_WHITE
-                }
-            ]
+            sequence: []
         }
+
+        this.stackSequence = []
     }
 
     componentDidMount() {
@@ -119,9 +113,34 @@ export default class FiveSunChessCanvas extends React.Component {
         fillRectangle({context, x: 0, y: 0, width: CONST.CANVAS_SIZE.WIDTH, height: CONST.CANVAS_SIZE.HEIGHT})
     }
 
+    undo () {
+        let sequence = this.state.sequence
+        ChessUtil.movePiece(sequence, this.stackSequence)
+        this.setState({
+            sequence: sequence
+        })
+    }
+
+    redo () {
+        let sequence = this.state.sequence
+        ChessUtil.movePiece(this.stackSequence, sequence)
+        this.setState({
+            sequence: sequence
+        })
+    }
+
     render() {
         return (
-            <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
+            <div className='fix-sun-chess-canvas'>
+                <div className='board'>
+                    <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
+                </div>
+                <div className='board'>
+                    <div className='button' onClick={this.undo}>悔棋</div>
+                    <div className='button' onClick={this.redo}>进棋</div>
+                </div>
+            </div>
+
         )
     }
 }
