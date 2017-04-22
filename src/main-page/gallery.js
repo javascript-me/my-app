@@ -33,7 +33,7 @@ export default class Gallery extends React.Component {
                     })
                 }
             </ul>
-            <hr/>
+            <div className='horizontal-rule' />
             {
                 feature ? feature.component : <div className='error'>Please try clicking above menu... </div>
             }
