@@ -5,7 +5,12 @@ export default class DomChess extends React.Component {
 
     addPieces() {
         return this.props.sequence.map((item, index) => {
-            return <div key={index} className='piece'>&nbsp;ddd</div>
+            return <div key={index} className={`piece ${item.side}`}
+                style={{
+                    width: CONST.PIECE_RADIUS * 2,
+                    height: CONST.PIECE_RADIUS * 2,
+                    margin: CONST.CELL_SIDE_LENGTH * 0.5 * 0.2
+                }}>&nbsp;</div>
         })
     }
 
