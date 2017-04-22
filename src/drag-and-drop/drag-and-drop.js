@@ -42,9 +42,6 @@ export default class DragAndDrop extends React.Component {
 
     handleMouseDown(e) {
         if (e.target.className === 'draggable-item') {
-
-
-
             this.diffX = e.clientX - e.target.offsetLeft
             this.diffY = e.clientY - e.target.offsetTop
             this.setState({

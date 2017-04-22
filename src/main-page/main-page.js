@@ -8,7 +8,7 @@ export default class Main extends Component {
             <div className="app">
                 <div className="app-header">
                     <img src={logo} className="app-logo" alt="logo" />
-                    <h2>Welcome to Gallery! [{new Date().toLocaleString()}]</h2>
+                    <span className='welcome-message'>Welcome to Gallery! [{new Date().toLocaleString()}]</span>
                 </div>
                 <SiteRouter />
             </div>
