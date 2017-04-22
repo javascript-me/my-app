@@ -9,7 +9,13 @@ function getNextSide(sequence, startSide) {
     return sequence[sequence.length - 1].side === CONST.PIECE_COLOR_BLACK ? CONST.PIECE_COLOR_WHITE : CONST.PIECE_COLOR_BLACK
 }
 
+function isValidNetXY(netX, netY) {
+    return (1 <= netX && netX <= CONST.BOARD_ROW_COLUMN_COUNT + 1)
+    && (1 <= netY && netY <= CONST.BOARD_ROW_COLUMN_COUNT + 1)
+}
+
 export default {
     calculateNetPosition: calculateNetPosition,
-    getNextSide: getNextSide
+    getNextSide: getNextSide,
+    isValidNetXY: isValidNetXY
 }
