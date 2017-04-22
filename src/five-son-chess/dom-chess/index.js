@@ -12,15 +12,15 @@ export default class DomChess extends React.Component {
     }
 
     componentDidMount() {
-        let rootDom = ReactDOM.findDOMNode(this.refs.root)
+        let rootDom = ReactDOM.findDOMNode(this.root)
         rootDom.addEventListener('mousedown', this.handleMouseDown)
         rootDom.addEventListener('mousemove', this.handleMouseMove)
     }
 
     handleMouseDown (e) {
 
-        let canvasX = e.clientX - ReactDOM.findDOMNode(this.refs.root).offsetLeft
-        let canvasY = e.clientY - ReactDOM.findDOMNode(this.refs.root).offsetTop
+        let canvasX = e.clientX - ReactDOM.findDOMNode(this.root).offsetLeft
+        let canvasY = e.clientY - ReactDOM.findDOMNode(this.root).offsetTop
 
         let netX = ChessUtil.calculateNetPosition(canvasX)
         let netY = ChessUtil.calculateNetPosition(canvasY)
@@ -71,7 +71,7 @@ export default class DomChess extends React.Component {
     }
 
     render () {
-        return <div ref='root' className='dom-chess' style={{
+        return <div ref={(ref) => this.root = ref} className='dom-chess' style={{
             width: CONST.CANVAS_SIZE.WIDTH - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             height: CONST.CANVAS_SIZE.HEIGHT - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             padding: CONST.CELL_SIDE_LENGTH - CONST.BORDER_WIDTH / 2
