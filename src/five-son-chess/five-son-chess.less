@@ -31,12 +31,25 @@
 
     .dom-chess {
       background-color: #808000;
+      position: relative;
 
       .row {
         .cell {
           display: inline-block;
           user-select: none;
         }
+      }
+
+      .piece {
+        background: white;
+        user-select: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
   }

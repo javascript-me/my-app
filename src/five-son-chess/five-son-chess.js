@@ -96,7 +96,7 @@ export default class FiveSonChess extends React.Component {
                     }
                 </div>
                 <div className='board'>
-                    <DomChess />
+                    <DomChess sequence={this.state.sequence}  />
                 </div>
             </div>
         )
