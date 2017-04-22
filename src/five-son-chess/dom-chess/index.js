@@ -1,7 +1,39 @@
 import React from 'react'
 import CONST from '../const'
+import ReactDOM from 'react-dom'
+import ChessUtil from '../chess-util'
 
 export default class DomChess extends React.Component {
+
+    constructor (props) {
+        super(props)
+        this.handleMouseDown = this.handleMouseDown.bind(this)
+        this.handleMouseMove = this.handleMouseMove.bind(this)
+    }
+
+    componentDidMount() {
+        let rootDom = ReactDOM.findDOMNode(this.refs.root)
+        rootDom.addEventListener('mousedown', this.handleMouseDown)
+        rootDom.addEventListener('mousemove', this.handleMouseMove)
+    }
+
+    handleMouseDown (e) {
+
+        let canvasX = e.clientX - ReactDOM.findDOMNode(this.refs.root).offsetLeft
+        let canvasY = e.clientY - ReactDOM.findDOMNode(this.refs.root).offsetTop
+
+        let netX = ChessUtil.calculateNetPosition(canvasX)
+        let netY = ChessUtil.calculateNetPosition(canvasY)
+
+        if (!ChessUtil.insideBoard(netX, netY)) return
+        if (!ChessUtil.isNewNetXY(this.props.sequence, netX, netY)) return
+
+        this.props.onClick(netX, netY)
+    }
+
+    handleMouseMove (e) {
+
+    }
 
     addPieces() {
         return this.props.sequence.map((item, index) => {
@@ -39,9 +71,7 @@ export default class DomChess extends React.Component {
     }
 
     render () {
-        console.log('render dom chess...')
-
-        return <div className='dom-chess' style={{
+        return <div ref='root' className='dom-chess' style={{
             width: CONST.CANVAS_SIZE.WIDTH - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             height: CONST.CANVAS_SIZE.HEIGHT - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             padding: CONST.CELL_SIDE_LENGTH - CONST.BORDER_WIDTH / 2
