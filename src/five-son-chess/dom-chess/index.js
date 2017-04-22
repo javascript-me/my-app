@@ -27,7 +27,8 @@ export default class DomChess extends React.Component {
     render () {
         return <div className='dom-chess' style={{
             width: CONST.CANVAS_SIZE.WIDTH - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
-            height: CONST.CANVAS_SIZE.HEIGHT - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH
+            height: CONST.CANVAS_SIZE.HEIGHT - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
+            padding: CONST.CELL_SIDE_LENGTH - CONST.BORDER_WIDTH / 2
         }}>
             {
                 this.initBoard()
