@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CONST from './const'
+import ChessUtil from './chess-util'
 
 function fillRectangle(props) {
     const {context, x, y, width, height} = props
@@ -16,6 +17,25 @@ export default class FiveSunChessCanvas extends React.Component {
 
     constructor (props) {
         super(props)
+
+        this.handleMouseDown = this.handleMouseDown.bind(this)
+        this.handleMouseMove = this.handleMouseMove.bind(this)
+
+        this.state = {
+            startSide: CONST.PIECE_COLOR_BLACK,
+            sequence: [
+                {
+                    netX: 2,
+                    netY: 2,
+                    side: CONST.PIECE_COLOR_BLACK
+                },
+                {
+                    netX: 3,
+                    netY: 3,
+                    side: CONST.PIECE_COLOR_WHITE
+                }
+            ]
+        }
     }
 
     componentDidMount() {
@@ -30,10 +50,23 @@ export default class FiveSunChessCanvas extends React.Component {
     }
 
     handleMouseDown (e) {
-        console.log('down. down.. ')
-        console.log('e.clientX: ' + e.clientX)
-        console.log('e.clientY: ' + e.clientY)
+        let canvasX = e.clientX - e.target.offsetLeft
+        let canvasY = e.clientY - e.target.offsetTop
 
+        let netX = ChessUtil.calculateNetPosition(canvasX)
+        let netY = ChessUtil.calculateNetPosition(canvasY)
+
+        let sequence = this.state.sequence
+
+        sequence.push({
+            netX: netX,
+            netY: netY,
+            side: ChessUtil.getNextSide(sequence, this.state.startSide)
+        })
+
+        this.setState({
+            sequence: sequence
+        })
 
     }
 
@@ -47,14 +80,18 @@ export default class FiveSunChessCanvas extends React.Component {
         const context = this.refs.canvas.getContext('2d')
         this.initCanvas(context);
         this.initBoard(context);
-        this.addPiece(context, 2, 2, CONST.PIECE_COLOR_BLACK);
-        this.addPiece(context, 2, 4, CONST.PIECE_COLOR_WHITE);
-        this.addPiece(context, 3, 6, CONST.PIECE_COLOR_BLACK);
+        this.addPieces(context);
     }
 
-    addPiece(context, xPosition, yPosition, color) {
+    addPieces(context) {
+        this.state.sequence.forEach((item) => {
+            this.addPiece(context, item.netX, item.netY, item.side);
+        })
+    }
+
+    addPiece(context, netX, netY, color) {
         context.beginPath()
-        context.arc(xPosition * CONST.CELL_SIDE_LENGTH, yPosition * CONST.CELL_SIDE_LENGTH, CONST.PIECE_RADIUS, 0, 2 * Math.PI, false)
+        context.arc(netX * CONST.CELL_SIDE_LENGTH, netY * CONST.CELL_SIDE_LENGTH, CONST.PIECE_RADIUS, 0, 2 * Math.PI, false)
         context.fillStyle = color
         context.strokeStyle = color
         context.stroke()
