@@ -23,9 +23,13 @@ export default class CanvasChess extends React.Component {
 
     componentDidMount() {
         this.updateCanvas()
-        let canvasDom = ReactDOM.findDOMNode(this.refs.canvas)
-        canvasDom.addEventListener('mousedown', this.handleMouseDown)
-        canvasDom.addEventListener('mousemove', this.handleMouseMove)
+        this.rootDom.addEventListener('mousedown', this.handleMouseDown)
+        this.rootDom.addEventListener('mousemove', this.handleMouseMove)
+    }
+
+    componentWillUnmount () {
+        this.rootDom.removeEventListener('mousedown', this.handleMouseDown)
+        this.rootDom.removeEventListener('mousemove', this.handleMouseMove)
     }
 
     componentDidUpdate() {
@@ -33,8 +37,8 @@ export default class CanvasChess extends React.Component {
     }
 
     handleMouseDown (e) {
-        let canvasX = e.clientX - e.target.offsetLeft
-        let canvasY = e.clientY - e.target.offsetTop
+        let canvasX = e.clientX + document.body.scrollLeft - this.rootDom.offsetLeft
+        let canvasY = e.clientY + document.body.scrollTop - this.rootDom.offsetTop
 
         let netX = ChessUtil.calculateNetPosition(canvasX)
         let netY = ChessUtil.calculateNetPosition(canvasY)
@@ -50,7 +54,7 @@ export default class CanvasChess extends React.Component {
     }
 
     updateCanvas() {
-        const context = this.refs.canvas.getContext('2d')
+        const context = this.root.getContext('2d')
         this.initCanvas(context);
         this.initBoard(context);
         this.addPieces(context);
@@ -93,7 +97,10 @@ export default class CanvasChess extends React.Component {
     }
 
     render () {
-        return <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
+        return <canvas ref={(ref) => {
+            this.rootDom = ReactDOM.findDOMNode(ref)
+            return this.root = ref
+        }} width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
     }
 }
 
