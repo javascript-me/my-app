@@ -17,8 +17,8 @@ export default class DomChess extends React.Component {
     }
 
     handleMouseDown (e) {
-        let canvasX = e.clientX - this.rootDom.offsetLeft
-        let canvasY = e.clientY - this.rootDom.offsetTop
+        let canvasX = e.clientX + document.body.scrollLeft - this.rootDom.offsetLeft
+        let canvasY = e.clientY + document.body.scrollTop - this.rootDom.offsetTop
 
         let netX = ChessUtil.calculateNetPosition(canvasX)
         let netY = ChessUtil.calculateNetPosition(canvasY)
