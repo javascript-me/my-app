@@ -29,9 +29,10 @@ function isWin(sequence, netX, netY) {
 
     //左上到右下
 
+    let matchedCount3 = getMatchedCountDimension3(sequence, netX, netY)
     let matchedCount4 = getMatchedCountDimension4(sequence, netX, netY)
 
-
+    if (matchedCount3 === 4) return true
     if (matchedCount4 === 4) return true
     return false
 }
@@ -47,7 +48,6 @@ function decreaseEnhancer(value, i) {
 function fixedEnhancer(value, i) {
     return value
 }
-
 
 function getMatchedCountDimension3(sequence, netX, netY) {
     if (!existPosition(sequence, netX, netY)) return 0
