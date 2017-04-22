@@ -14,6 +14,7 @@ export default class FiveSonChess extends React.Component {
         this.reset = this.reset.bind(this)
 
         this.updateSequence = this.updateSequence.bind(this)
+        this.handleClick = this.handleClick.bind(this)
 
         this.state = {
             startSide: CONST.PIECE_COLOR_BLACK,
@@ -24,8 +25,24 @@ export default class FiveSonChess extends React.Component {
     }
 
     updateSequence (sequence) {
+        // this.setState({
+        //     sequence: sequence
+        // })
+    }
+
+    handleClick (netX, netY) {
+        let sequence = this.state.sequence
+        sequence.push({
+            netX: netX,
+            netY: netY,
+            side: ChessUtil.getNextSide(sequence, this.state.startSide)
+        })
+
+        let isWin = ChessUtil.isWin(sequence, netX, netY)
+
         this.setState({
-            sequence: sequence
+            sequence: sequence,
+            isWin: isWin
         })
     }
 
@@ -66,7 +83,7 @@ export default class FiveSonChess extends React.Component {
             <div className='fix-sun-chess-canvas'>
                 <div className='board'>
                     <Canvas sequence={this.state.sequence} startSide={this.state.startSide}
-                            onSequenceUpdate={this.updateSequence} />
+                            onSequenceUpdate={this.updateSequence} onClick={this.handleClick} />
                 </div>
                 <div className='board'>
                     <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
