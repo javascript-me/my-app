@@ -5,5 +5,6 @@ export default {
     },
     CANVAS_COLOR: '#EEEEEE',
     LINE_COLOR: 'green',
-    CELL_SIDE_LENGTH: 50
+    CELL_SIDE_LENGTH: 50,
+    BOARD_ROW_COLUMN_COUNT: 8
 }
