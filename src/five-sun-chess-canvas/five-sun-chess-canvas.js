@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import CONST from './const'
 import ChessUtil from './chess-util'
+import ClassNames from 'classnames'
 
 function fillRectangle(props) {
     const {context, x, y, width, height} = props
@@ -23,6 +24,7 @@ export default class FiveSunChessCanvas extends React.Component {
 
         this.undo = this.undo.bind(this)
         this.redo = this.redo.bind(this)
+        this.reset = this.reset.bind(this)
 
         this.state = {
             startSide: CONST.PIECE_COLOR_BLACK,
@@ -129,6 +131,22 @@ export default class FiveSunChessCanvas extends React.Component {
         })
     }
 
+    reset () {
+        this.setState({
+            sequence: []
+        })
+        this.stackSequence = []
+    }
+
+    getButtonClassNames (sequence) {
+        return ClassNames(
+            'button',
+            {
+                disable: sequence.length === 0
+            }
+        )
+    }
+
     render() {
         return (
             <div className='fix-sun-chess-canvas'>
@@ -136,11 +154,11 @@ export default class FiveSunChessCanvas extends React.Component {
                     <canvas ref="canvas" width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
                 </div>
                 <div className='board'>
-                    <div className='button' onClick={this.undo}>悔棋</div>
-                    <div className='button' onClick={this.redo}>进棋</div>
+                    <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
+                    <div className={this.getButtonClassNames(this.stackSequence)} onClick={this.redo}>进棋</div>
+                    <div className='button' onClick={this.reset}>重置</div>
                 </div>
             </div>
-
         )
     }
 }
