@@ -4,7 +4,7 @@ const CANVAS_SIZE = {
 }
 const CELL_SIDE_LENGTH =  50
 const BOARD_ROW_COLUMN_COUNT = 8
-const PIECE_RADIUS = 24
+const PIECE_RADIUS = 20
 
 const CANVAS_COLOR = 'olive'
 const LINE_COLOR = 'black'
