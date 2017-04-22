@@ -9,7 +9,9 @@ export default class DomChess extends React.Component {
                 style={{
                     width: CONST.PIECE_RADIUS * 2,
                     height: CONST.PIECE_RADIUS * 2,
-                    margin: CONST.CELL_SIDE_LENGTH * 0.5 * 0.2
+                    margin: CONST.CELL_SIDE_LENGTH * 0.5 * 0.2,
+                    left: item.netX * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5,
+                    top: item.netY * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5
                 }}>&nbsp;</div>
         })
     }
