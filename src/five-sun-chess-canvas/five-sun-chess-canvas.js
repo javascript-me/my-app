@@ -33,6 +33,8 @@ export default class FiveSunChessCanvas extends React.Component {
         console.log('down. down.. ')
         console.log('e.clientX: ' + e.clientX)
         console.log('e.clientY: ' + e.clientY)
+
+
     }
 
     handleMouseMove (e) {
@@ -44,11 +46,32 @@ export default class FiveSunChessCanvas extends React.Component {
     updateCanvas() {
         const context = this.refs.canvas.getContext('2d')
         this.initCanvas(context);
+        this.initBoard(context);
+        this.addPiece(context, 2, 2, CONST.PIECE_COLOR_BLACK);
+        this.addPiece(context, 2, 4, CONST.PIECE_COLOR_WHITE);
+        this.addPiece(context, 3, 6, CONST.PIECE_COLOR_BLACK);
+    }
 
+    addPiece(context, xPosition, yPosition, color) {
+        context.beginPath()
+        context.arc(xPosition * CONST.CELL_SIDE_LENGTH, yPosition * CONST.CELL_SIDE_LENGTH, CONST.PIECE_RADIUS, 0, 2 * Math.PI, false)
+        context.fillStyle = color
+        context.strokeStyle = color
+        context.stroke()
+        context.fill()
+    }
+
+    initBoard(context) {
         context.strokeStyle = CONST.LINE_COLOR
-        for (let i = 1; i <= CONST.BOARD_ROW_COLUMN_COUNT ; i++) {
+        for (let i = 1; i <= CONST.BOARD_ROW_COLUMN_COUNT; i++) {
             for (let j = 1; j <= CONST.BOARD_ROW_COLUMN_COUNT; j++) {
-                strokeRectangle({context, x: CONST.CELL_SIDE_LENGTH * j, y: CONST.CELL_SIDE_LENGTH * i, width: CONST.CELL_SIDE_LENGTH, height: CONST.CELL_SIDE_LENGTH})
+                strokeRectangle({
+                    context,
+                    x: CONST.CELL_SIDE_LENGTH * j,
+                    y: CONST.CELL_SIDE_LENGTH * i,
+                    width: CONST.CELL_SIDE_LENGTH,
+                    height: CONST.CELL_SIDE_LENGTH
+                })
             }
         }
     }
