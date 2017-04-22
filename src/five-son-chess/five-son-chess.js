@@ -14,7 +14,7 @@ function strokeRectangle(props) {
     context.strokeRect(x, y, width, height)
 }
 
-export default class FiveSunChessCanvas extends React.Component {
+export default class FiveSonChess extends React.Component {
 
     constructor (props) {
         super(props)
