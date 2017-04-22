@@ -16,7 +16,7 @@ export default class DomChess extends React.Component {
                                   borderRightWidth: (j === CONST.BOARD_ROW_COLUMN_COUNT) ? CONST.BORDER_WIDTH : 0,
                                   borderBottomWidth: (i === CONST.BOARD_ROW_COLUMN_COUNT) ? CONST.BORDER_WIDTH : 0
                               }}>
-                    {i}{j}
+                    &nbsp;
                 </div>)
             }
             table.push(<div className='row'>{row}</div>)
