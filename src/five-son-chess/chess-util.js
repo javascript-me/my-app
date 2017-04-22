@@ -44,12 +44,28 @@ function decreaseEnhancer(value, i) {
     return value - i
 }
 
-function getMatchedCountDimension4(sequence, netX, netY) {
+function fixedEnhancer(value, i) {
+    return value
+}
+
+
+function getMatchedCountDimension3(sequence, netX, netY) {
+    if (!existPosition(sequence, netX, netY)) return 0
+
     let matchedCount = 0
     let mySide = sequence[sequence.length - 1].side
 
-    // matchedCount += getMatchedCountTopLeft(sequence, netX, netY, mySide, decreaseEnhancer, decreaseEnhancer)
-    // matchedCount += getMatchedCountBottomRight(sequence, netX, netY, mySide, increaseEnhancer, increaseEnhancer)
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, decreaseEnhancer, fixedEnhancer)
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, increaseEnhancer, fixedEnhancer)
+
+    return matchedCount
+}
+
+function getMatchedCountDimension4(sequence, netX, netY) {
+    if (!existPosition(sequence, netX, netY)) return 0
+
+    let matchedCount = 0
+    let mySide = sequence[sequence.length - 1].side
 
     matchedCount += getMatchedCount(sequence, netX, netY, mySide, decreaseEnhancer, decreaseEnhancer)
     matchedCount += getMatchedCount(sequence, netX, netY, mySide, increaseEnhancer, increaseEnhancer)
@@ -72,9 +88,16 @@ function getMatchedCount(sequence, netX, netY, mySide, netXEnhancer, netYEnhance
 function existPiece(sequence, netX, netY, side) {
     return sequence.some((item) => {return samePiece(item, netX, netY, side)})
 }
+function existPosition(sequence, netX, netY) {
+    return sequence.some((item) => {return samePosition(item, netX, netY)})
+}
 
 function samePiece(item, netX, netY, side) {
     return item.netX === netX && item.netY === netY && item.side === side
+}
+
+function samePosition(item, netX, netY) {
+    return item.netX === netX && item.netY === netY
 }
 
 export default {
@@ -84,7 +107,11 @@ export default {
     isNewNetXY: isNewNetXY,
     movePiece: movePiece,
     isWin: isWin,
+
+    getMatchedCountDimension3: getMatchedCountDimension3,
     getMatchedCountDimension4: getMatchedCountDimension4,
+
+
     existPiece: existPiece,
 
     getMatchedCount: getMatchedCount,

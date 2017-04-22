@@ -4,9 +4,40 @@ import CONST from './const'
 
 describe('CanvasUtil', () => {
 
+    let dimension3Sequence
     let dimension4Sequence
 
     beforeEach(() => {
+
+        dimension3Sequence = [
+            {
+                netX: 2,
+                netY: 2,
+                side: CONST.PIECE_COLOR_BLACK
+            },
+            {
+                netX: 3,
+                netY: 2,
+                side: CONST.PIECE_COLOR_BLACK
+            },
+            {
+                netX: 4,
+                netY: 2,
+                side: CONST.PIECE_COLOR_BLACK
+            },
+            {
+                netX: 5,
+                netY: 2,
+                side: CONST.PIECE_COLOR_BLACK
+            },
+            {
+                netX: 6,
+                netY: 2,
+                side: CONST.PIECE_COLOR_BLACK
+            }
+        ]
+
+
         dimension4Sequence = [
             {
                 netX: 1,
@@ -95,6 +126,19 @@ describe('CanvasUtil', () => {
         assert.ok(ChessUtil.isWin(dimension4Sequence, 3, 3))
     })
 
+    it('getMatchedCountDimension3() will return count of matched piece from top-left to bottom-right', () => {
+        assert.equal(4, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 2, 2, CONST.PIECE_COLOR_BLACK))
+        assert.equal(4, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 3, 2, CONST.PIECE_COLOR_BLACK))
+        assert.equal(4, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 4, 2, CONST.PIECE_COLOR_BLACK))
+        assert.equal(4, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 5, 2, CONST.PIECE_COLOR_BLACK))
+        assert.equal(4, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 6, 2, CONST.PIECE_COLOR_BLACK))
+
+
+        console.log(ChessUtil.getMatchedCountDimension3(dimension3Sequence, 1, 2, CONST.PIECE_COLOR_BLACK))
+        assert.equal(0, ChessUtil.getMatchedCountDimension3(dimension3Sequence, 1, 2, CONST.PIECE_COLOR_BLACK))
+    })
+
+
     it('getMatchedCountDimension4() will return count of matched piece from top-left to bottom-right', () => {
         assert.equal(4, ChessUtil.getMatchedCountDimension4(dimension4Sequence, 1, 1, CONST.PIECE_COLOR_BLACK))
         assert.equal(4, ChessUtil.getMatchedCountDimension4(dimension4Sequence, 2, 2, CONST.PIECE_COLOR_BLACK))
@@ -103,7 +147,6 @@ describe('CanvasUtil', () => {
         assert.equal(4, ChessUtil.getMatchedCountDimension4(dimension4Sequence, 5, 5, CONST.PIECE_COLOR_BLACK))
 
         assert.equal(0, ChessUtil.getMatchedCountDimension4(dimension4Sequence, 1, 2, CONST.PIECE_COLOR_BLACK))
-
     })
 
     it('existPiece() will return true when it is the same side', () => {
