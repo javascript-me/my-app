@@ -25,6 +25,8 @@ export default class FiveSonChess extends React.Component {
     }
 
     handleClick (netX, netY) {
+        if (this.state.isWin) return
+
         let sequence = this.state.sequence
         sequence.push({
             netX: netX,
@@ -58,7 +60,8 @@ export default class FiveSonChess extends React.Component {
 
     reset () {
         this.setState({
-            sequence: []
+            sequence: [],
+            isWin: false
         })
         this.stackSequence = []
     }
@@ -82,6 +85,9 @@ export default class FiveSonChess extends React.Component {
                     <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
                     <div className={this.getButtonClassNames(this.stackSequence)} onClick={this.redo}>进棋</div>
                     <div className='button' onClick={this.reset}>重置</div>
+                    {
+                        this.state.isWin && <div className='label' onClick={this.reset}>赢啦</div>
+                    }
                 </div>
             </div>
         )
