@@ -21,8 +21,6 @@ export default class FiveSonChess extends React.Component {
             stackSequence: [],
             isWin: false
         }
-
-        // this.stackSequence = []
     }
 
     handleClick (netX, netY) {
