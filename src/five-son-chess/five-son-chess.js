@@ -18,10 +18,11 @@ export default class FiveSonChess extends React.Component {
         this.state = {
             startSide: CONST.PIECE_COLOR_BLACK,
             sequence: [],
+            stackSequence: [],
             isWin: false
         }
 
-        this.stackSequence = []
+        // this.stackSequence = []
     }
 
     handleClick (netX, netY) {
@@ -38,32 +39,38 @@ export default class FiveSonChess extends React.Component {
 
         this.setState({
             sequence: sequence,
-            isWin: isWin
+            isWin: isWin,
+            stackSequence: []
         })
     }
 
     undo () {
         let sequence = this.state.sequence
-        ChessUtil.movePiece(sequence, this.stackSequence)
+        let stackSequence = this.state.stackSequence
+        ChessUtil.movePiece(sequence, stackSequence)
         this.setState({
-            sequence: sequence
+            sequence: sequence,
+            stackSequence: stackSequence,
+            isWin: false
         })
     }
 
     redo () {
         let sequence = this.state.sequence
-        ChessUtil.movePiece(this.stackSequence, sequence)
+        let stackSequence = this.state.stackSequence
+        ChessUtil.movePiece(stackSequence, sequence)
         this.setState({
-            sequence: sequence
+            sequence: sequence,
+            stackSequence: stackSequence
         })
     }
 
     reset () {
         this.setState({
             sequence: [],
+            stackSequence: [],
             isWin: false
         })
-        this.stackSequence = []
     }
 
     getButtonClassNames (sequence) {
@@ -83,7 +90,7 @@ export default class FiveSonChess extends React.Component {
                 </div>
                 <div className='board'>
                     <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
-                    <div className={this.getButtonClassNames(this.stackSequence)} onClick={this.redo}>进棋</div>
+                    <div className={this.getButtonClassNames(this.state.stackSequence)} onClick={this.redo}>进棋</div>
                     <div className='button' onClick={this.reset}>重置</div>
                     {
                         this.state.isWin && <div className='label' onClick={this.reset}>赢啦</div>
