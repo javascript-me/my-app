@@ -29,9 +29,13 @@ function isWin(sequence, netX, netY) {
 
     //左上到右下
 
+    let matchedCount1 = getMatchedCountDimension1(sequence, netX, netY)
+    let matchedCount2 = getMatchedCountDimension2(sequence, netX, netY)
     let matchedCount3 = getMatchedCountDimension3(sequence, netX, netY)
     let matchedCount4 = getMatchedCountDimension4(sequence, netX, netY)
 
+    if (matchedCount1 === 4) return true
+    if (matchedCount2 === 4) return true
     if (matchedCount3 === 4) return true
     if (matchedCount4 === 4) return true
     return false
@@ -47,6 +51,30 @@ function decreaseEnhancer(value, i) {
 
 function fixedEnhancer(value, i) {
     return value
+}
+
+function getMatchedCountDimension1(sequence, netX, netY) {
+    if (!existPosition(sequence, netX, netY)) return 0
+
+    let matchedCount = 0
+    let mySide = sequence[sequence.length - 1].side
+
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, fixedEnhancer, decreaseEnhancer)
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, fixedEnhancer, increaseEnhancer)
+
+    return matchedCount
+}
+
+function getMatchedCountDimension2(sequence, netX, netY) {
+    if (!existPosition(sequence, netX, netY)) return 0
+
+    let matchedCount = 0
+    let mySide = sequence[sequence.length - 1].side
+
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, decreaseEnhancer, increaseEnhancer)
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, increaseEnhancer, decreaseEnhancer)
+
+    return matchedCount
 }
 
 function getMatchedCountDimension3(sequence, netX, netY) {
