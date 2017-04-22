@@ -27,18 +27,12 @@ function movePiece(sequenceFrom, sequenceTo) {
 
 function isWin(sequence, netX, netY) {
 
-    //左上到右下
-
     let matchedCount1 = getMatchedCountDimension1(sequence, netX, netY)
     let matchedCount2 = getMatchedCountDimension2(sequence, netX, netY)
     let matchedCount3 = getMatchedCountDimension3(sequence, netX, netY)
     let matchedCount4 = getMatchedCountDimension4(sequence, netX, netY)
 
-    if (matchedCount1 === 4) return true
-    if (matchedCount2 === 4) return true
-    if (matchedCount3 === 4) return true
-    if (matchedCount4 === 4) return true
-    return false
+    return [matchedCount1, matchedCount2, matchedCount3, matchedCount4].indexOf(CONST.TRACK_DISTANCE) >= 0
 }
 
 function increaseEnhancer(value, i) {
