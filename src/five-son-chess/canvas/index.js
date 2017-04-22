@@ -42,21 +42,11 @@ export default class Canvas extends React.Component {
         if (!ChessUtil.insideBoard(netX, netY)) return
         if (!ChessUtil.isNewNetXY(this.props.sequence, netX, netY)) return
 
-        // let sequence = this.props.sequence
-        //
-        // sequence.push({
-        //     netX: netX,
-        //     netY: netY,
-        //     side: ChessUtil.getNextSide(sequence, this.props.startSide)
-        // })
-        //
-        // console.log(ChessUtil.isWin(sequence, netX, netY))
-
-        //this.props.onSequenceUpdate(sequence)
         this.props.onClick(netX, netY)
     }
 
     handleMouseMove (e) {
+
     }
 
     updateCanvas() {
@@ -109,7 +99,5 @@ export default class Canvas extends React.Component {
 
 Canvas.propTypes = {
     sequence: React.PropTypes.array,
-    onSequenceUpdate: React.PropTypes.func,
     onClick: React.PropTypes.func
-
 }
