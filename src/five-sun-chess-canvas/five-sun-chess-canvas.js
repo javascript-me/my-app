@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 function rect(props) {
     const {ctx, x, y, width, height} = props
@@ -7,12 +8,25 @@ function rect(props) {
 
 export default class FiveSunChessCanvas extends React.Component {
 
+    constructor (props) {
+        super(props)
+    }
+
     componentDidMount() {
         this.updateCanvas()
+        let canvasDom = ReactDOM.findDOMNode(this.refs.canvas)
+        canvasDom.addEventListener('mousedown', this.handleMouseDown)
     }
     
     componentDidUpdate() {
         this.updateCanvas()
+    }
+
+    handleMouseDown (e) {
+        console.log('down. down.. ')
+        console.log('e.clientX: ' + e.clientX)
+        console.log('e.clientY: ' + e.clientY)
+
     }
 
     updateCanvas() {
