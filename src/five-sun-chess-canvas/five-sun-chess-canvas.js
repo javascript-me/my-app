@@ -56,10 +56,8 @@ export default class FiveSunChessCanvas extends React.Component {
         let netX = ChessUtil.calculateNetPosition(canvasX)
         let netY = ChessUtil.calculateNetPosition(canvasY)
 
-        console.log('netX: ' + netX)
-        console.log('netY: ' + netY)
-
-        if (!ChessUtil.isValidNetXY(netX, netY)) return
+        if (!ChessUtil.insideBoard(netX, netY)) return
+        if (!ChessUtil.isNewNetXY(this.state.sequence, netX, netY)) return
 
         let sequence = this.state.sequence
 
@@ -72,10 +70,10 @@ export default class FiveSunChessCanvas extends React.Component {
         this.setState({
             sequence: sequence
         })
-
     }
 
     handleMouseMove (e) {
+
     }
 
     updateCanvas() {

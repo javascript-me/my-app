@@ -14,8 +14,16 @@ function isValidNetXY(netX, netY) {
     && (1 <= netY && netY <= CONST.BOARD_ROW_COLUMN_COUNT + 1)
 }
 
+function isNewNetXY(sequence, netX, netY) {
+    return sequence.every((item) => {
+        console.log(item.netX, netX, item.netY, netY)
+        return item.netX !== netX || item.netY !== netY
+    })
+}
+
 export default {
     calculateNetPosition: calculateNetPosition,
     getNextSide: getNextSide,
-    isValidNetXY: isValidNetXY
+    insideBoard: isValidNetXY,
+    isNewNetXY: isNewNetXY
 }
