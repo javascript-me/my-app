@@ -13,7 +13,7 @@ function strokeRectangle(props) {
     context.strokeRect(x, y, width, height)
 }
 
-export default class Canvas extends React.Component {
+export default class CanvasChess extends React.Component {
 
     constructor (props) {
         super(props)
@@ -97,7 +97,7 @@ export default class Canvas extends React.Component {
     }
 }
 
-Canvas.propTypes = {
+CanvasChess.propTypes = {
     sequence: React.PropTypes.array,
     onClick: React.PropTypes.func
 }

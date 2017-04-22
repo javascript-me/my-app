@@ -2,7 +2,8 @@ import React from 'react'
 import CONST from './const'
 import ChessUtil from './chess-util'
 import ClassNames from 'classnames'
-import Canvas from './canvas'
+import CanvasChess from './canvas-chess'
+import DomChess from './dom-chess'
 
 export default class FiveSonChess extends React.Component {
 
@@ -82,9 +83,9 @@ export default class FiveSonChess extends React.Component {
 
     render() {
         return (
-            <div className='fix-sun-chess-canvas'>
+            <div className='five-sun-chess-canvas'>
                 <div className='board'>
-                    <Canvas sequence={this.state.sequence} onClick={this.handleClick} />
+                    <CanvasChess sequence={this.state.sequence} onClick={this.handleClick} />
                 </div>
                 <div className='board'>
                     <div className={this.getButtonClassNames(this.state.sequence)} onClick={this.undo}>悔棋</div>
@@ -93,6 +94,9 @@ export default class FiveSonChess extends React.Component {
                     {
                         this.state.isWin && <div className='label' onClick={this.reset}>赢啦</div>
                     }
+                </div>
+                <div className='board'>
+                    <DomChess />
                 </div>
             </div>
         )

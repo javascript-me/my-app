@@ -13,7 +13,7 @@ export default {
         {featureName: 'multiple-media', label: 'Multiple Media', component: <MultipleMedias />},
         {featureName: 'drag-and-drop', label: 'Drag and Drop', component: <DragAndDrop />},
         {featureName: 'moveable-list', label: 'Moveable List', component: <MoveableList />},
-        {featureName: 'five-sun-chess-canvas', label: 'Five Sun Chess Canvas', component: <FiveSunChess />}
+        {featureName: 'five-son-chess', label: 'Five Son Chess', component: <FiveSunChess />}
 
 
     ]

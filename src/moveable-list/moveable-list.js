@@ -96,7 +96,7 @@ export default class MoveableList extends React.Component {
         let list = this.state.list
         list.forEach((item) => {
             if (item.isDragging) {
-                let newLeft = e.clientX - item.diffX
+                // let newLeft = e.clientX - item.diffX
                 let newTop = e.clientY - item.diffY
                 item.locationStyle = DragAndDropUtil.createLocationStyle(0, newTop)
             }
@@ -124,10 +124,10 @@ export default class MoveableList extends React.Component {
             <ul>
                 {
                     this.state.list.map((item, index) => {
-                        return <li className={'item' + ' ' + index} key={index}>
+                        return <li className={`item ${index}`} key={index}>
                             <div className='shadow' style={item.locationStyle}>shadow</div>
 
-                            <div className={'dragging-icon' + ' ' + index}>Dragging ICON</div>
+                            <div className={`dragging-icon ${index}`}>Dragging ICON</div>
                             <div className='label'>{item.label}</div>
 
                         </li>
