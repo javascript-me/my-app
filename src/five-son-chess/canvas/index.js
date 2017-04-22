@@ -50,6 +50,9 @@ export default class Canvas extends React.Component {
             side: ChessUtil.getNextSide(sequence, this.props.startSide)
         })
 
+        console.log('result:::')
+        console.log(ChessUtil.isWin(sequence, netX, netY))
+
         this.props.onSequenceUpdate(sequence)
     }
 
