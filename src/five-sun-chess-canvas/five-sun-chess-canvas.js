@@ -43,15 +43,15 @@ export default class FiveSunChessCanvas extends React.Component {
 
     updateCanvas() {
         const context = this.refs.canvas.getContext('2d')
+
         context.clearRect(0,0, CONST.CANVAS_SIZE.WIDTH, CONST.CANVAS_SIZE.HEIGHT)
-
         context.fillStyle = CONST.CANVAS_COLOR
-
         fillRectangle({context, x: 0, y: 0, width: CONST.CANVAS_SIZE.WIDTH, height: CONST.CANVAS_SIZE.HEIGHT})
 
-        context.fillStyle = 'green'
 
 
+
+        context.strokeStyle = CONST.LINE_COLOR
 
         strokeRectangle({context, x: 0, y: 0, width: CONST.CELL_SIDE_LENGTH, height: CONST.CELL_SIDE_LENGTH})
         strokeRectangle({context, x: 50, y: 50, width: CONST.CELL_SIDE_LENGTH, height: CONST.CELL_SIDE_LENGTH})
