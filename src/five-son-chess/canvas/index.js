@@ -50,15 +50,11 @@ export default class Canvas extends React.Component {
             side: ChessUtil.getNextSide(sequence, this.props.startSide)
         })
 
-        // this.setState({
-        //     sequence: sequence
-        // })
-
         this.props.onSequenceUpdate(sequence)
     }
 
     handleMouseMove (e) {
-
+        console.log('move....')
     }
 
     updateCanvas() {
