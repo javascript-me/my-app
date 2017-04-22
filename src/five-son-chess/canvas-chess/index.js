@@ -23,15 +23,13 @@ export default class CanvasChess extends React.Component {
 
     componentDidMount() {
         this.updateCanvas()
-        let rootDom = ReactDOM.findDOMNode(this.root)
-        rootDom.addEventListener('mousedown', this.handleMouseDown)
-        rootDom.addEventListener('mousemove', this.handleMouseMove)
+        this.rootDom.addEventListener('mousedown', this.handleMouseDown)
+        this.rootDom.addEventListener('mousemove', this.handleMouseMove)
     }
 
     componentWillUnmount () {
-        let rootDom = ReactDOM.findDOMNode(this.root)
-        rootDom.removeEventListener('mousedown', this.handleMouseDown)
-        rootDom.removeEventListener('mousemove', this.handleMouseMove)
+        this.rootDom.removeEventListener('mousedown', this.handleMouseDown)
+        this.rootDom.removeEventListener('mousemove', this.handleMouseMove)
     }
 
     componentDidUpdate() {
@@ -99,7 +97,10 @@ export default class CanvasChess extends React.Component {
     }
 
     render () {
-        return <canvas ref={(ref) => this.root = ref} width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
+        return <canvas ref={(ref) => {
+            this.rootDom = ReactDOM.findDOMNode(ref)
+            return this.root = ref
+        }} width={CONST.CANVAS_SIZE.WIDTH} height={CONST.CANVAS_SIZE.WIDTH} />
     }
 }
 

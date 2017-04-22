@@ -12,15 +12,13 @@ export default class DomChess extends React.Component {
     }
 
     componentDidMount() {
-        let rootDom = ReactDOM.findDOMNode(this.root)
-        rootDom.addEventListener('mousedown', this.handleMouseDown)
-        rootDom.addEventListener('mousemove', this.handleMouseMove)
+        this.rootDom.addEventListener('mousedown', this.handleMouseDown)
+        this.rootDom.addEventListener('mousemove', this.handleMouseMove)
     }
 
     handleMouseDown (e) {
-
-        let canvasX = e.clientX - ReactDOM.findDOMNode(this.root).offsetLeft
-        let canvasY = e.clientY - ReactDOM.findDOMNode(this.root).offsetTop
+        let canvasX = e.clientX - this.rootDom.offsetLeft
+        let canvasY = e.clientY - this.rootDom.offsetTop
 
         let netX = ChessUtil.calculateNetPosition(canvasX)
         let netY = ChessUtil.calculateNetPosition(canvasY)
@@ -65,13 +63,15 @@ export default class DomChess extends React.Component {
                 </div>)
             }
             table.push(<div className='row' key={i}>{row}</div>)
-
         }
         return table
     }
 
     render () {
-        return <div ref={(ref) => this.root = ref} className='dom-chess' style={{
+        return <div ref={(ref) => {
+            this.rootDom = ReactDOM.findDOMNode(ref)
+            return this.root = ref
+        }} className='dom-chess' style={{
             width: CONST.CANVAS_SIZE.WIDTH - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             height: CONST.CANVAS_SIZE.HEIGHT - 2 * CONST.CELL_SIDE_LENGTH + CONST.BORDER_WIDTH,
             padding: CONST.CELL_SIDE_LENGTH - CONST.BORDER_WIDTH / 2
