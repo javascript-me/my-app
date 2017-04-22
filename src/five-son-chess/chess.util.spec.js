@@ -117,20 +117,20 @@ describe('CanvasUtil', () => {
         assert.isNotOk(ChessUtil.existPiece(dimension4Sequence, 8, 8, CONST.PIECE_COLOR_BLACK))
     })
 
-    it('getMatchedCountWestNorth()', () => {
-        assert.equal(0, ChessUtil.getMatchedCountWestNorth(dimension4Sequence, 1, 1, CONST.PIECE_COLOR_BLACK))
-        assert.equal(1, ChessUtil.getMatchedCountWestNorth(dimension4Sequence, 2, 2, CONST.PIECE_COLOR_BLACK))
-        assert.equal(2, ChessUtil.getMatchedCountWestNorth(dimension4Sequence, 3, 3, CONST.PIECE_COLOR_BLACK))
-        assert.equal(3, ChessUtil.getMatchedCountWestNorth(dimension4Sequence, 4, 4, CONST.PIECE_COLOR_BLACK))
-        assert.equal(4, ChessUtil.getMatchedCountWestNorth(dimension4Sequence, 5, 5, CONST.PIECE_COLOR_BLACK))
+    it('getMatchedCount() for TopLeft', () => {
+        assert.equal(0, ChessUtil.getMatchedCount(dimension4Sequence, 1, 1, CONST.PIECE_COLOR_BLACK, ChessUtil.decreaseEnhancer, ChessUtil.decreaseEnhancer))
+        assert.equal(1, ChessUtil.getMatchedCount(dimension4Sequence, 2, 2, CONST.PIECE_COLOR_BLACK, ChessUtil.decreaseEnhancer, ChessUtil.decreaseEnhancer))
+        assert.equal(2, ChessUtil.getMatchedCount(dimension4Sequence, 3, 3, CONST.PIECE_COLOR_BLACK, ChessUtil.decreaseEnhancer, ChessUtil.decreaseEnhancer))
+        assert.equal(3, ChessUtil.getMatchedCount(dimension4Sequence, 4, 4, CONST.PIECE_COLOR_BLACK, ChessUtil.decreaseEnhancer, ChessUtil.decreaseEnhancer))
+        assert.equal(4, ChessUtil.getMatchedCount(dimension4Sequence, 5, 5, CONST.PIECE_COLOR_BLACK, ChessUtil.decreaseEnhancer, ChessUtil.decreaseEnhancer))
     })
 
-    it('getMatchedCountEastSouth()', () => {
-        assert.equal(4, ChessUtil.getMatchedCountEastSouth(dimension4Sequence, 1, 1, CONST.PIECE_COLOR_BLACK))
-        assert.equal(3, ChessUtil.getMatchedCountEastSouth(dimension4Sequence, 2, 2, CONST.PIECE_COLOR_BLACK))
-        assert.equal(2, ChessUtil.getMatchedCountEastSouth(dimension4Sequence, 3, 3, CONST.PIECE_COLOR_BLACK))
-        assert.equal(1, ChessUtil.getMatchedCountEastSouth(dimension4Sequence, 4, 4, CONST.PIECE_COLOR_BLACK))
-        assert.equal(0, ChessUtil.getMatchedCountEastSouth(dimension4Sequence, 5, 5, CONST.PIECE_COLOR_BLACK))
+    it('getMatchedCount() for BottomRight', () => {
+        assert.equal(4, ChessUtil.getMatchedCount(dimension4Sequence, 1, 1, CONST.PIECE_COLOR_BLACK, ChessUtil.increaseEnhancer, ChessUtil.increaseEnhancer))
+        assert.equal(3, ChessUtil.getMatchedCount(dimension4Sequence, 2, 2, CONST.PIECE_COLOR_BLACK, ChessUtil.increaseEnhancer, ChessUtil.increaseEnhancer))
+        assert.equal(2, ChessUtil.getMatchedCount(dimension4Sequence, 3, 3, CONST.PIECE_COLOR_BLACK, ChessUtil.increaseEnhancer, ChessUtil.increaseEnhancer))
+        assert.equal(1, ChessUtil.getMatchedCount(dimension4Sequence, 4, 4, CONST.PIECE_COLOR_BLACK, ChessUtil.increaseEnhancer, ChessUtil.increaseEnhancer))
+        assert.equal(0, ChessUtil.getMatchedCount(dimension4Sequence, 5, 5, CONST.PIECE_COLOR_BLACK, ChessUtil.increaseEnhancer, ChessUtil.increaseEnhancer))
     })
 
 })

@@ -36,32 +36,31 @@ function isWin(sequence, netX, netY) {
     return false
 }
 
+function increaseEnhancer(value, i) {
+    return value + i
+}
+
+function decreaseEnhancer(value, i) {
+    return value - i
+}
+
 function getMatchedCountDimension4(sequence, netX, netY) {
     let matchedCount = 0
     let mySide = sequence[sequence.length - 1].side
 
-    matchedCount += getMatchedCountWestNorth(sequence, netX, netY, mySide)
-    matchedCount += getMatchedCountEastSouth(sequence, netX, netY, mySide)
+    // matchedCount += getMatchedCountTopLeft(sequence, netX, netY, mySide, decreaseEnhancer, decreaseEnhancer)
+    // matchedCount += getMatchedCountBottomRight(sequence, netX, netY, mySide, increaseEnhancer, increaseEnhancer)
+
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, decreaseEnhancer, decreaseEnhancer)
+    matchedCount += getMatchedCount(sequence, netX, netY, mySide, increaseEnhancer, increaseEnhancer)
 
     return matchedCount
 }
 
-function getMatchedCountWestNorth(sequence, netX, netY, mySide) {
+function getMatchedCount(sequence, netX, netY, mySide, netXEnhancer, netYEnhancer) {
     let matchedCount = 0
     for (let i = 1 ; i <= CONST.TRACK_DISTANCE ; i++) {
-        if (existPiece(sequence, netX - i, netY - i, mySide)) {
-            matchedCount++
-        } else {
-            break
-        }
-    }
-    return matchedCount
-}
-
-function getMatchedCountEastSouth(sequence, netX, netY, mySide) {
-    let matchedCount = 0
-    for (let i = 1 ; i <= CONST.TRACK_DISTANCE ; i++) {
-        if (existPiece(sequence, netX + i, netY + i, mySide)) {
+        if (existPiece(sequence, netXEnhancer(netX, i), netYEnhancer(netY, i), mySide)) {
             matchedCount++
         } else {
             break
@@ -87,6 +86,9 @@ export default {
     isWin: isWin,
     getMatchedCountDimension4: getMatchedCountDimension4,
     existPiece: existPiece,
-    getMatchedCountWestNorth: getMatchedCountWestNorth,
-    getMatchedCountEastSouth: getMatchedCountEastSouth
+
+    getMatchedCount: getMatchedCount,
+
+    increaseEnhancer: increaseEnhancer,
+    decreaseEnhancer: decreaseEnhancer
 }
