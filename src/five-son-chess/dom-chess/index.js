@@ -8,13 +8,13 @@ export default class DomChess extends Chess {
     addPieces() {
         return this.props.sequence.map((item, index) => {
             return <div key={index} className={`piece ${item.side}`}
-                style={{
-                    width: CONST.PIECE_RADIUS * 2,
-                    height: CONST.PIECE_RADIUS * 2,
-                    margin: CONST.CELL_SIDE_LENGTH * 0.5 * 0.2,
-                    left: item.netX * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5,
-                    top: item.netY * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5
-                }}>&nbsp;</div>
+                        style={{
+                            width: CONST.PIECE_RADIUS * 2,
+                            height: CONST.PIECE_RADIUS * 2,
+                            margin: CONST.CELL_SIDE_LENGTH * 0.5 * 0.2,
+                            left: item.netX * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5,
+                            top: item.netY * CONST.CELL_SIDE_LENGTH - CONST.CELL_SIDE_LENGTH * 0.5
+                        }}>&nbsp;</div>
         })
     }
 

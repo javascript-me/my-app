@@ -1,9 +1,5 @@
 import CONST from './const'
 
-// function calculateNetPosition(offset) {
-//     return Math.round(offset / CONST.CELL_SIDE_LENGTH)
-// }
-
 function calculateNetPosition(offset, cellSideLength) {
     return Math.round(offset / cellSideLength)
 }
@@ -136,7 +132,6 @@ export default {
 
     getMatchedCountDimension3: getMatchedCountDimension3,
     getMatchedCountDimension4: getMatchedCountDimension4,
-
 
     existPiece: existPiece,
 
