@@ -11,6 +11,7 @@ export default class Main extends Component {
                     <span className='welcome-message'>Welcome to Gallery! [{new Date().toLocaleString()}]</span>
                 </div>
                 <SiteRouter />
+
             </div>
         )
     }

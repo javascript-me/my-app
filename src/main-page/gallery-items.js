@@ -8,13 +8,11 @@ import FiveSunChess from '../five-son-chess/five-son-chess'
 
 export default {
     items: [
+        {featureName: 'five-son-chess', label: '五子棋', component: <FiveSunChess />},
         {featureName: 'agents', label: 'Agents', component: <Agents />},
         {featureName: 'center-div', label: 'Center Div', component: <CenterDiv />},
         {featureName: 'multiple-media', label: 'Multiple Media', component: <MultipleMedias />},
         {featureName: 'drag-and-drop', label: 'Drag and Drop', component: <DragAndDrop />},
-        {featureName: 'moveable-list', label: 'Moveable List', component: <MoveableList />},
-        {featureName: 'five-son-chess', label: 'Five Son Chess', component: <FiveSunChess />}
-
-
+        {featureName: 'moveable-list', label: 'Moveable List', component: <MoveableList />}
     ]
 }
