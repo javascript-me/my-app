@@ -4,10 +4,31 @@
     float: left;
     margin: 5px;
 
+    .button-group-slim {
+      .button-slim {
+        display: inline-block;
+        color: white;
+        cursor: pointer;
+        background: green;
+
+        height: 50px;
+        line-height: 50px;
+        border-radius: 5px;
+
+        width: 25px;
+        text-align: center;
+
+      }
+
+      .button-slim:nth-child(odd) {
+        margin-right: 5px;
+      }
+    }
+
     .button {
       height: 50px;
-      border-radius: 5px;
       line-height: 50px;
+      border-radius: 5px;
       padding: 0 10px;
       margin: 10px 0;
 
