@@ -1,7 +1,7 @@
 import React from 'react'
 import CONST from '../const'
 import ReactDOM from 'react-dom'
-import ChessUtil from '../chess-util'
+import Chess from '../chess'
 
 function fillRectangle(props) {
     const {context, x, y, width, height} = props
@@ -13,44 +13,15 @@ function strokeRectangle(props) {
     context.strokeRect(x, y, width, height)
 }
 
-export default class CanvasChess extends React.Component {
-
-    constructor (props) {
-        super(props)
-        this.handleMouseDown = this.handleMouseDown.bind(this)
-        this.handleMouseMove = this.handleMouseMove.bind(this)
-    }
+export default class CanvasChess extends Chess {
 
     componentDidMount() {
         this.updateCanvas()
-        this.rootDom.addEventListener('mousedown', this.handleMouseDown)
-        this.rootDom.addEventListener('mousemove', this.handleMouseMove)
-    }
-
-    componentWillUnmount () {
-        this.rootDom.removeEventListener('mousedown', this.handleMouseDown)
-        this.rootDom.removeEventListener('mousemove', this.handleMouseMove)
+        super.componentDidMount()
     }
 
     componentDidUpdate() {
         this.updateCanvas()
-    }
-
-    handleMouseDown (e) {
-        let canvasX = e.clientX + document.body.scrollLeft - this.rootDom.offsetLeft
-        let canvasY = e.clientY + document.body.scrollTop - this.rootDom.offsetTop
-
-        let netX = ChessUtil.calculateNetPosition(canvasX)
-        let netY = ChessUtil.calculateNetPosition(canvasY)
-
-        if (!ChessUtil.insideBoard(netX, netY)) return
-        if (!ChessUtil.isNewNetXY(this.props.sequence, netX, netY)) return
-
-        this.props.onClick(netX, netY)
-    }
-
-    handleMouseMove (e) {
-
     }
 
     updateCanvas() {

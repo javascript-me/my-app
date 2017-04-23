@@ -1,37 +1,9 @@
 import React from 'react'
 import CONST from '../const'
 import ReactDOM from 'react-dom'
-import ChessUtil from '../chess-util'
+import Chess from '../chess'
 
-export default class DomChess extends React.Component {
-
-    constructor (props) {
-        super(props)
-        this.handleMouseDown = this.handleMouseDown.bind(this)
-        this.handleMouseMove = this.handleMouseMove.bind(this)
-    }
-
-    componentDidMount() {
-        this.rootDom.addEventListener('mousedown', this.handleMouseDown)
-        this.rootDom.addEventListener('mousemove', this.handleMouseMove)
-    }
-
-    handleMouseDown (e) {
-        let canvasX = e.clientX + document.body.scrollLeft - this.rootDom.offsetLeft
-        let canvasY = e.clientY + document.body.scrollTop - this.rootDom.offsetTop
-
-        let netX = ChessUtil.calculateNetPosition(canvasX)
-        let netY = ChessUtil.calculateNetPosition(canvasY)
-
-        if (!ChessUtil.insideBoard(netX, netY)) return
-        if (!ChessUtil.isNewNetXY(this.props.sequence, netX, netY)) return
-
-        this.props.onClick(netX, netY)
-    }
-
-    handleMouseMove (e) {
-
-    }
+export default class DomChess extends Chess {
 
     addPieces() {
         return this.props.sequence.map((item, index) => {

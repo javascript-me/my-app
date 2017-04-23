@@ -69,8 +69,8 @@ describe('CanvasUtil', () => {
 
     it('calculateNetPosition() will return correct net position', () => {
 
-        assert.equal(2, ChessUtil.calculateNetPosition(120))
-        assert.equal(2, ChessUtil.calculateNetPosition(80))
+        assert.equal(2, ChessUtil.calculateNetPosition(120, 50))
+        assert.equal(2, ChessUtil.calculateNetPosition(80, 50))
 
     })
 

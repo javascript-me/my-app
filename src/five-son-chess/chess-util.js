@@ -1,7 +1,11 @@
 import CONST from './const'
 
-function calculateNetPosition(offset) {
-    return Math.round(offset / CONST.CELL_SIDE_LENGTH)
+// function calculateNetPosition(offset) {
+//     return Math.round(offset / CONST.CELL_SIDE_LENGTH)
+// }
+
+function calculateNetPosition(offset, cellSideLength) {
+    return Math.round(offset / cellSideLength)
 }
 
 function getNextSide(sequence, startSide) {
