@@ -24,7 +24,7 @@ Run unit test.
 npm test
 ```
 
-Run application.
+Run application. (http://localhost:3000)
 
 ```
 npm start
@@ -43,7 +43,7 @@ my-app/coverage/lcov-report/index.html
 ```
 
 
-(Optional) Build to single optimized files and run.
+(Optional) Build to single optimized files and run. (http://localhost:5000)
 
 ```
 npm run build
