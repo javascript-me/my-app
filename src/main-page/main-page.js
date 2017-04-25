@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
-import SiteRouter from './site-router'
+import FiveSunChess from '../five-son-chess/five-son-chess'
 
 export default class Main extends Component {
     render() {
@@ -10,8 +10,7 @@ export default class Main extends Component {
                     <img src={logo} className="app-logo" alt="logo" />
                     <span className='welcome-message'>Welcome to Gallery! [{new Date().toLocaleString()}]</span>
                 </div>
-                <SiteRouter />
-
+                <FiveSunChess />
             </div>
         )
     }
