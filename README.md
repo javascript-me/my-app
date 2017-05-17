@@ -2,14 +2,15 @@
 TODO
 =====
 
-1. Use router.
+1. (Done) Use router.
 2. Ensure Unit Test is 100% coverage.
 3. Add ESLint checking.
 4. 应该把+Specify Resources和对应的flyout放到同一个小组件当中，
 这样window的click事件就能够区分出e.target是来自于小组件内还是来自于小组件外。
 5. 进行服务器端的React编程。
 6. 在React中使用D3。
-
+7. 使用Browserify来进行编译。
+8. 定义自己的Express。
 
 Step
 =====
