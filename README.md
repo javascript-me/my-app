@@ -11,8 +11,20 @@ TODO
 6. 在React中使用D3。
 7. 使用Browserify来进行编译。
 8. 定义自己的Express。
+9. 做一做展开语法{...this.props}。
+10. 无状态的函数式组件。P40。
+11. 高阶组件。
 
-Step
+有趣的组件
+=====
+表格
+auto complete
+
+理念
+=====
+做到自带光环。
+
+Steps
 =====
 
 Install dependencies. Please ensure you have latest node [e.g. https://nodejs.org/dist/v6.10.1/] installed in your machine.
@@ -44,7 +56,6 @@ See unit test coverage report here:
 ```
 my-app/coverage/lcov-report/index.html
 ```
-
 
 (Optional) Build to single optimized files and run. (http://localhost:5000)
 
