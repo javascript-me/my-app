@@ -57,11 +57,11 @@ Run coverage, then see unit test coverage report here: my-app/coverage/lcov-repo
 npm run coverage
 ```
 
-Build to single optimized files and run. (http://localhost:5000)
+Build to single optimized files and run: http://localhost:5000. 
 
 ```
 npm run build
-npm install -g serve
+npm install -g serve (Only need to run once. )
 npm run server
 ```
 
