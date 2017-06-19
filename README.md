@@ -39,25 +39,25 @@ Run unit test.
 npm test
 ```
 
-Run application. (http://localhost:3000)
+Run application: http://localhost:3000. Changes in JS file will automatically trigger browser refresh. 
 
 ```
 npm start
 ```
 
-Run coverage
+Compile CSS
+
+```
+npm run css
+```
+
+Run coverage, then see unit test coverage report here: my-app/coverage/lcov-report/index.html
 
 ```
 npm run coverage
 ```
 
-See unit test coverage report here:
-
-```
-my-app/coverage/lcov-report/index.html
-```
-
-(Optional) Build to single optimized files and run. (http://localhost:5000)
+Build to single optimized files and run. (http://localhost:5000)
 
 ```
 npm run build
