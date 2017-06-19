@@ -39,13 +39,13 @@ Run unit test.
 npm test
 ```
 
-Run application: http://localhost:3000. Changes in JS file will automatically trigger browser refresh. 
+Run application: http://localhost:3000. Browser will be refreshed automaticall after you save your JS files. 
 
 ```
 npm start
 ```
 
-Compile CSS
+Compile CSS. Broswer will be refreshed automatically after that. 
 
 ```
 npm run css
