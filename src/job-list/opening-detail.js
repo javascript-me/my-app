@@ -8,7 +8,7 @@ export default class OpeningDetail extends React.Component {
     }
 
     handleClick () {
-        console.log('click apply... ')
+        console.log('click apply... ' + this.props.title)
     }
 
     render () {
