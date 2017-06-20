@@ -3,15 +3,6 @@ import OpeningDetail from './opening-detail.js'
 
 export default class OpeningList extends React.Component {
 
-    constructor (props) {
-        super(props)
-        this.handleClick = this.handleClick.bind(this)
-    }
-
-    handleClick () {
-        console.log('click apply... ')
-    }
-
     render () {
         return <div>
             <ul>
